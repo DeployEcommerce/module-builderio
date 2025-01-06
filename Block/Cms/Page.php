@@ -68,7 +68,7 @@ class Page extends AbstractBlock implements IdentityInterface
     public function _toHtml(): mixed
     {
         if ($html = $this->getPage()->getHtml()) {
-            return $html;
+            return $this->filterProvider->getPageFilter()->filter($html);
         }
 
         return parent::_toHtml();
