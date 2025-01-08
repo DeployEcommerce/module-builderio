@@ -51,6 +51,21 @@
                     poor performance.]]></comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="enable_cms_home_page" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Overwrite Homepage with BuilderIO page</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cms_home_page" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>BuilderIO Homepage Content</label>
+                    <comment/>
+                    <source_model>DeployEcommerce\BuilderIO\Model\Config\Source\Pages</source_model>
+                    <depends>
+                        <field id="enable_cms_home_page">1</field>
+                    </depends>
+                </field>
             </group>
             <group id="api_settings" sortOrder="10" showInStore="1"
                    translate="label">

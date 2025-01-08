@@ -12,4 +12,9 @@
                 type="DeployEcommerce\BuilderIO\Plugin\Magento\Framework\App\Response\HeaderProvider"
                 sortOrder="999"/>
     </type>
+    <type name="Magento\Store\Model\PathConfig">
+        <plugin name="PathConfig"
+                type="DeployEcommerce\BuilderIO\Plugin\Magento\Store\Model\PathConfig"
+                sortOrder="999"/>
+    </type>
 </config>

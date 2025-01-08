@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Api;
 
+use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\LocalizedException;
 use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterface;
 
@@ -53,4 +54,12 @@ interface ContentPageRepositoryInterface
      * @throws LocalizedException
      */
     public function delete(ContentPageInterface $contentPage);
+
+    /**
+     * Lists content pages
+     *
+     * @param SearchCriteriaInterface $searchCriteria
+     * @return ContentPageSearchResultsInterface
+     */
+    public function getList(SearchCriteriaInterface $searchCriteria);
 }

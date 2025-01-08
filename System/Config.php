@@ -36,6 +36,8 @@ class Config
     public const SITEMAP_ENABLE = "builder_io/sitemap/enable";
     public const SITEMAP_CHANGEFREQUENCY = "builder_io/sitemap/changefrequency";
     public const SITEMAP_PRIORITY = "builder_io/sitemap/priority";
+    public const ENABLE_CMS_HOMEPAGE = "builder_io/general_settings/enable_cms_home_page";
+    public const CMS_HOMEPAGE = "builder_io/general_settings/cms_home_page";
 
     /**
      * Config constructor.
@@ -231,5 +233,26 @@ class Config
     public function getMappedWorkspaceFromStore($storeId = null)
     {
         return $this->scopeConfig->getValue(self::INTEGRATION_API_WORSKPACE_ID, ScopeInterface::SCOPE_STORE, $storeId);
+    }
+
+    /**
+     * Check if the Builder.io integration is enabled.
+     *
+     * @return bool
+     */
+    public function isCmsHomepageEnabled($storeId = null)
+    {
+        return $this->scopeConfig->isSetFlag(self::ENABLE_CMS_HOMEPAGE, ScopeInterface::SCOPE_STORE, $storeId);
+    }
+
+    /**
+     * Get the CMS homepage for the Builder.io integration.
+     *
+     * @param null|int|string $storeId
+     * @return string
+     */
+    public function getCmsHomepage($storeId = null)
+    {
+        return $this->scopeConfig->getValue(self::CMS_HOMEPAGE, ScopeInterface::SCOPE_STORE, $storeId);
     }
 }

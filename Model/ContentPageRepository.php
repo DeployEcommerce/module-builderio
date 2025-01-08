@@ -10,7 +10,10 @@ namespace DeployEcommerce\BuilderIO\Model;
 
 use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterface;
 use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterfaceFactory;
+use DeployEcommerce\BuilderIO\Model\ResourceModel\ContentPageModel\ContentPageCollectionFactory;
 use DeployEcommerce\BuilderIO\Api\ContentPageRepositoryInterface;
+use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Api\SearchResultsInterfaceFactory;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -23,10 +26,14 @@ class ContentPageRepository implements ContentPageRepositoryInterface
      *
      * @param ResourceModel\ContentPageResource $resource
      * @param ContentPageInterfaceFactory $contentPageFactory
+     * @param SearchResultsInterfaceFactory $searchResultsFactory
+     * @param ContentPageCollectionFactory $contentPageCollectionFactory
      */
     public function __construct(
         private ResourceModel\ContentPageResource $resource,
         private ContentPageInterfaceFactory $contentPageFactory,
+        private SearchResultsInterfaceFactory $searchResultsFactory,
+        private ContentPageCollectionFactory $contentPageCollectionFactory,
     ) {
     }
 
@@ -88,5 +95,21 @@ class ContentPageRepository implements ContentPageRepositoryInterface
                 $exception
             );
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getList(SearchCriteriaInterface $criteria)
+    {
+        /** @var WebhookCollection $collection */
+        $collection = $this->contentPageCollectionFactory->create();
+
+        $searchResults = $this->searchResultsFactory->create();
+        $searchResults->setSearchCriteria($criteria);
+        $searchResults->setItems($collection->getItems());
+        $searchResults->setTotalCount($collection->getSize());
+
+        return $searchResults;
     }
 }
