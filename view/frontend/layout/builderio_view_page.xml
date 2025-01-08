@@ -7,6 +7,9 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="cms_page_view" />
+    <head>
+        <script src="https://cdn.builder.io/js/qwik/qwikloader.js" src_type="url"/>
+    </head>
     <body>
         <referenceContainer name="content">
             <block class="DeployEcommerce\BuilderIO\Block\Cms\Page" name="cms_page"/>

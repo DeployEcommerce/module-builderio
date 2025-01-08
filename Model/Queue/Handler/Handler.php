@@ -109,15 +109,15 @@ class Handler
             ->setBuilderioPageId($page['id'])
             ->setUrl($page['data']['url'])
             ->setTitle($page['data']['title'])
-            ->setMetaDescription($page['data']['description']??'')
-            ->setMetaKeywords($page['data']['keywords']??'')
+            ->setMetaDescription($page['data']['Description']??'')
+            ->setMetaKeywords($page['data']['Keywords']??'')
             ->setModelName($model_name)
             ->setStoreIds(implode(
                 ',',
                 $this->config->getMappedStoreFromWorkspace($this->webhook->getOwnerId())
             ))
             ->setStatus($page['published']??'')
-            ->setHtml($page['data']['html']);
+            ->setHtml($page['html']);
 
         try {
             $this->contentPageRepository->save($contentPage);

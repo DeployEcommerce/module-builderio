@@ -29,13 +29,12 @@ class Page
         'name',
         'published',
         'data.url',
-        'data.html',
         'data.title',
-        'data.metaDescription',
-        'data.metaKeywords'
+        'data.Description',
+        'data.Keywords'
     ];
 
-    protected const API_PAGE_ENDPOINT = 'https://cdn.builder.io/api/v3/html/';
+    protected const API_PAGE_ENDPOINT = 'https://cdn.builder.io/api/v1/qwik/';
 
     /**
      * Page constructor.
@@ -68,7 +67,7 @@ class Page
             [
             'url' => $url,
             'limit' => 1,
-            'fields' => implode(',', self::CMS_PAGES_FIELDS)
+            // 'fields' => implode(',', self::CMS_PAGES_FIELDS)
             ]
         );
 
