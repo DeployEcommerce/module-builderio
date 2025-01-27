@@ -67,6 +67,8 @@ class Page
             [
             'url' => $url,
             'limit' => 1,
+            'cacheSeconds' => 0,
+            'preview' => true,
             // 'fields' => implode(',', self::CMS_PAGES_FIELDS)
             ]
         );
