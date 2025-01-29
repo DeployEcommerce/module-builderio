@@ -4,6 +4,7 @@
     "description": "A magento 2 extensions that renders Builder.io content.",
     "type": "magento2-module",
     "require": {
+        "php": "~8.1.0|~8.2.0|~8.3.0",
         "magento/framework": "*",
         "magento/module-store": "*",
         "magento/module-cms": "*",
