@@ -8,7 +8,12 @@
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
 
-    <table name="builderio_webhook" resource="default" engine="innodb" comment="Content from BuilderIO">
+    <table name="builderio_webhook"
+           resource="default"
+           charset="utf8mb4"
+           collation="utf8mb4_unicode_ci"
+           engine="innodb"
+           comment="Webhook from BuilderIO">
         <column xsi:type="int" name="webhook_id" padding="10" unsigned="true" nullable="false" identity="true"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="webhook_id"/>
@@ -41,7 +46,13 @@
         <column xsi:type="varchar" name="folders" nullable="false" comment="folders"/>
     </table>
 
-    <table name="builderio_content_page" resource="default" engine="innodb" comment="Page Content from BuilderIO">
+    <table name="builderio_content_page"
+           resource="default"
+           charset="utf8mb4"
+           collation="utf8mb4_unicode_ci"
+           engine="innodb"
+           comment="Page Content from BuilderIO"
+    >
         <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" />
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
@@ -62,27 +73,39 @@
         <column xsi:type="datetime" name="updated_at" comment="Updated At"/>
     </table>
 
-    <table name="builderio_content_section" resource="default" engine="innodb" comment="Section Content from BuilderIO">
-        <column xsi:type="varchar" name="builderio_section_id" nullable="false"/>
+    <table name="builderio_content_section"
+           resource="default"
+           charset="utf8mb4"
+           collation="utf8mb4_unicode_ci"
+           engine="innodb"
+           comment="Section Content from BuilderIO"
+    >
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" />
         <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="builderio_section_id"/>
+            <column name="id"/>
         </constraint>
         <index referenceId="BUILDERIO_CONTENT_SECTION_ID" indexType="btree">
-            <column name="builderio_section_id"/>
+            <column name="id"/>
         </index>
+        <column xsi:type="varchar" name="builderio_section_id" nullable="false"/>
         <column xsi:type="longtext" name="html" nullable="false" comment="html"/>
     </table>
 
-    <table name="builderio_content_structred_data" resource="default" engine="innodb"
+    <table name="builderio_content_structred_data"
+           resource="default"
+           charset="utf8mb4"
+           collation="utf8mb4_unicode_ci"
+           engine="innodb"
            comment="Structured Data Content from BuilderIO"
     >
-        <column xsi:type="varchar" name="builderio_structured_data_id" nullable="false"/>
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" />
         <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="builderio_structured_data_id"/>
+            <column name="id"/>
         </constraint>
         <index referenceId="BUILDERIO_CONTENT_STRUCTURED_DATA_ID" indexType="btree">
-            <column name="builderio_structured_data_id"/>
+            <column name="id"/>
         </index>
+        <column xsi:type="varchar" name="builderio_structured_data_id" nullable="false"/>
         <column xsi:type="longtext" name="html" nullable="false" comment="html"/>
     </table>
 </schema>

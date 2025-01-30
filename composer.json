@@ -1,6 +1,6 @@
 {
     "name": "deployecommerce/module-builderio",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "description": "A magento 2 extensions that renders Builder.io content.",
     "type": "magento2-module",
     "require": {
