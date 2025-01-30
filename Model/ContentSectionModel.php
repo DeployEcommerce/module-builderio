@@ -2,7 +2,6 @@
 /*
  * @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
- * @Package:   DeployEcommerce_BuilderIO
  */
 
 namespace DeployEcommerce\BuilderIO\Model;
@@ -12,6 +11,10 @@ use Magento\Framework\Model\AbstractModel;
 
 class ContentSectionModel extends AbstractModel
 {
+    const BUILDERIO_TYPE_ATTRIBUTE_FRONTEND_INPUT = 'text';
+
+    const BUILDERIO_TYPE_ATTRIBUTE_FRONTEND_SELECT = 'select';
+
     /**
      * @var string
      */

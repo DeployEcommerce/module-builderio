@@ -11,13 +11,16 @@
         <add id="DeployEcommerce_BuilderIO::management" sortOrder="10" title="Builder IO"
              module="DeployEcommerce_BuilderIO" parent="Magento_Backend::content"
              resource="DeployEcommerce_BuilderIO::management" translate="title"/>
-        <add id="DeployEcommerce_BuilderIO::listing" sortOrder="20" title="Page Content"
+        <add id="DeployEcommerce_BuilderIO::listing_page" sortOrder="20" title="Page Content"
              module="DeployEcommerce_BuilderIO" parent="DeployEcommerce_BuilderIO::management"
-             resource="DeployEcommerce_BuilderIO::listing" translate="title" action="builderio/content/page"/>
-        <add id="DeployEcommerce_BuilderIO::management_webhook" sortOrder="30" title="Webhook Management"
+             resource="DeployEcommerce_BuilderIO::listing_page" translate="title" action="builderio/content/page"/>
+        <add id="DeployEcommerce_BuilderIO::listing_section" sortOrder="30" title="Section Content"
+             module="DeployEcommerce_BuilderIO" parent="DeployEcommerce_BuilderIO::management"
+             resource="DeployEcommerce_BuilderIO::listing_section" translate="title" action="builderio/content/section"/>
+        <add id="DeployEcommerce_BuilderIO::management_webhook" sortOrder="40" title="Webhook Management"
              module="DeployEcommerce_BuilderIO" parent="DeployEcommerce_BuilderIO::management"
              resource="DeployEcommerce_BuilderIO::management" translate="title" action="builderio/webhook/index"/>
-        <add id="DeployEcommerce_BuilderIO::management_configuration" sortOrder="40" title="Configuration"
+        <add id="DeployEcommerce_BuilderIO::management_configuration" sortOrder="50" title="Configuration"
              module="DeployEcommerce_BuilderIO" parent="DeployEcommerce_BuilderIO::management"
              resource="DeployEcommerce_BuilderIO::management" translate="title" action="adminhtml/system_config/edit/section/builder_io"/>
     </menu>

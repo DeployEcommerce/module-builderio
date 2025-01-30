@@ -9,17 +9,17 @@
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">content_page_listing.content_page_listing_data_source</item>
-            <item name="deps" xsi:type="string">content_page_listing.content_page_listing_data_source</item>
+            <item name="provider" xsi:type="string">content_listing_page.content_listing_page_data_source</item>
+            <item name="deps" xsi:type="string">content_listing_page.content_listing_page_data_source</item>
         </item>
     </argument>
     <settings>
-        <spinner>content_page_listing_columns</spinner>
+        <spinner>content_listing_page_columns</spinner>
         <deps>
-            <dep>content_page_listing.content_page_listing_data_source</dep>
+            <dep>content_listing_page.content_listing_page_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="content_page_listing_data_source" component="Magento_Ui/js/grid/provider">
+    <dataSource name="content_listing_page_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
             <storageConfig>
                 <param name="indexField" xsi:type="string">id</param>
@@ -28,7 +28,7 @@
         </settings>
         <aclResource>DeployEcommerce_BuilderIO::listing</aclResource>
         <dataProvider class="DeployEcommerce\BuilderIO\Ui\DataProvider\ContentPageDataProvider"
-                      name="content_page_listing_data_source">
+                      name="content_listing_page_data_source">
             <settings>
                 <requestFieldName>webhook_id</requestFieldName>
                 <primaryFieldName>webhook_id</primaryFieldName>
@@ -40,7 +40,7 @@
         <filters name="listing_filters"/>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="content_page_listing_columns">
+    <columns name="content_listing_page_columns">
         <column name="id">
             <settings>
                 <filter>textRange</filter>

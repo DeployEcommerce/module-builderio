@@ -2,13 +2,14 @@
 <!--
   ~ @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
   ~ @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
+  ~ @Package:   DeployEcommerce_BuilderIO
   -->
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <uiComponent name="content_listing_page"/>
+            <uiComponent name="content_listing_section"/>
         </referenceContainer>
     </body>
 </page>
