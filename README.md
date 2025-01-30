@@ -45,8 +45,6 @@ We welcome contributions from the community! Here's how you can help:
 3. Commit your changes and push the branch.
 4. Submit a pull request to the main repository.
 
-**Please make sure your code adheres to Magento's coding standards and includes necessary tests.**
-
 ## Support
 
 For issues or feature requests, please open a GitHub issue in this repository.
