@@ -2,7 +2,6 @@
 <!--
   ~ @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
   ~ @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
-  ~ @Package:   DeployEcommerce_BuilderIO
   -->
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -157,6 +156,16 @@
                     <label>Priority</label>
                     <backend_model>Magento\Sitemap\Model\Config\Backend\Priority</backend_model>
                     <comment>Valid values range from 0.0 to 1.0.</comment>
+                </field>
+            </group>
+            <group id="experimental" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                   translate="label">
+                <label>Experimental Settings</label>
+                <field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Enable Qwick API</label>
+                    <comment><![CDATA[This is an experimental feature and may not work as expected.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
         </section>
