@@ -108,7 +108,7 @@ class Handler
         $contentPage
             ->setBuilderioPageId($page['id'])
             ->setUrl($page['data']['url'])
-            ->setTitle($page['data']['title'])
+            ->setTitle($page['data']['Title']??'')
             ->setMetaDescription($page['data']['Description']??'')
             ->setMetaKeywords($page['data']['Keywords']??'')
             ->setModelName($model_name)
