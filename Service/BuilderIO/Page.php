@@ -29,7 +29,7 @@ class Page
         'name',
         'published',
         'data.url',
-        'data.title',
+        'data.Title',
         'data.Description',
         'data.Keywords'
     ];
