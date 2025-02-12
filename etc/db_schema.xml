@@ -88,24 +88,12 @@
             <column name="id"/>
         </index>
         <column xsi:type="varchar" name="builderio_section_id" nullable="false"/>
+        <column xsi:type="varchar" name="model_name" comment="Model Name" default="page" />
+        <column xsi:type="varchar" name="url" comment="Url"/>
+        <column xsi:type="varchar" name="store_ids" comment="Store Ids"/>
+        <column xsi:type="varchar" name="status" comment="Status"/>
         <column xsi:type="longtext" name="html" nullable="false" comment="html"/>
-    </table>
-
-    <table name="builderio_content_structred_data"
-           resource="default"
-           charset="utf8mb4"
-           collation="utf8mb4_unicode_ci"
-           engine="innodb"
-           comment="Structured Data Content from BuilderIO"
-    >
-        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" />
-        <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="id"/>
-        </constraint>
-        <index referenceId="BUILDERIO_CONTENT_STRUCTURED_DATA_ID" indexType="btree">
-            <column name="id"/>
-        </index>
-        <column xsi:type="varchar" name="builderio_structured_data_id" nullable="false"/>
-        <column xsi:type="longtext" name="html" nullable="false" comment="html"/>
+        <column xsi:type="datetime" name="created_at" comment="Created At"/>
+        <column xsi:type="datetime" name="updated_at" comment="Updated At"/>
     </table>
 </schema>
