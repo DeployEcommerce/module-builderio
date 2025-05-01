@@ -96,11 +96,11 @@ class Handler
     {
         $url = $this->webhook->getUrlPath();
         $model_name = $this->webhook->getModelName();
+        $api = PageService::API_HTML_PAGE_ENDPOINT;
 
+        // Check if the URL contains a widget if it does use the Qwik API
         if( str_contains($this->webhook->getWebhookData(), "{{widget") ) {
             $api = PageService::API_QWIK_PAGE_ENDPOINT;
-        } else {
-            $api = PageService::API_HTML_PAGE_ENDPOINT;
         }
 
         $page = $this->json->unserialize($this->pageService->fetchContentApi($url, $api), true);
@@ -123,7 +123,7 @@ class Handler
                 $this->config->getMappedStoreFromWorkspace($this->webhook->getOwnerId())
             ))
             ->setStatus($page['published']??'')
-            ->setHtml($page['html']);
+            ->setHtml($page['html']??$page['data']['html']);
 
         try {
             $this->contentPageRepository->save($contentPage);
