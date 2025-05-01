@@ -34,7 +34,9 @@ class Page
         'data.Keywords'
     ];
 
-    protected const API_PAGE_ENDPOINT = 'https://cdn.builder.io/api/v1/qwik/';
+    public const API_QWIK_PAGE_ENDPOINT = 'https://cdn.builder.io/api/v1/qwik/page';
+
+    public const API_HTML_PAGE_ENDPOINT = 'https://cdn.builder.io/api/v3/html/page';
 
     /**
      * Page constructor.
@@ -56,14 +58,15 @@ class Page
      * Fetch content from the Builder.io API for a given URL.
      *
      * @param string $url The URL to fetch content for.
+     * @param string $api The API endpoint to use (default is the HTML page endpoint).
      * @return mixed The content fetched from the API or an empty string on failure.
      * @throws GuzzleException If an error occurs during the request.
      */
-    public function fetchContentApi($url, $model = 'page'): mixed
+    public function fetchContentApi($url, $api = self::API_HTML_PAGE_ENDPOINT): mixed
     {
         $content = '';
         $apiResult = $this->builderIO->getRequest(
-            self::API_PAGE_ENDPOINT . $model,
+            $api,
             [
             'url' => $url,
             'limit' => 1,

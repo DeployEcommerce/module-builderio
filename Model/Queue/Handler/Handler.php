@@ -97,7 +97,13 @@ class Handler
         $url = $this->webhook->getUrlPath();
         $model_name = $this->webhook->getModelName();
 
-        $page = $this->json->unserialize($this->pageService->fetchContentApi($url, $model_name), true);
+        if( str_contains($this->webhook->getWebhookData(), "{{widget") ) {
+            $api = PageService::API_QWIK_PAGE_ENDPOINT;
+        } else {
+            $api = PageService::API_HTML_PAGE_ENDPOINT;
+        }
+
+        $page = $this->json->unserialize($this->pageService->fetchContentApi($url, $api), true);
 
         try {
             $contentPage = $this->contentPageRepository->findByBuilderioPageId($page['id']);
