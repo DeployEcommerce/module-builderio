@@ -111,6 +111,12 @@ class Handler
             $contentPage = $this->contentPageFactory->create();
         }
 
+        $html = isset($page['html'])? $page['html'] : $page['data']['html'];
+        if (!$html) {
+            $this->logger->error('No HTML content found for page ID: ' . $page['id']);
+            return;
+        }
+
         $contentPage
             ->setBuilderioPageId($page['id'])
             ->setUrl($page['data']['url'])
@@ -123,7 +129,7 @@ class Handler
                 $this->config->getMappedStoreFromWorkspace($this->webhook->getOwnerId())
             ))
             ->setStatus($page['published']??'')
-            ->setHtml($page['html']??$page['data']['html']);
+            ->setHtml($html);
 
         try {
             $this->contentPageRepository->save($contentPage);
