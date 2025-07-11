@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+  ~ @Author:    Brandon van Rensburg
+  ~ @Copyright: 2025 DeployEcommerce (https://www.techarlie.co.za/)
+  ~ @Package:   DeployEcommerce_BuilderIO
+  -->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/builderio/collections/:collectionId" method="GET">
+        <service class="DeployEcommerce\BuilderIO\Api\Data\ProductCollectionResultInterface" method="getProductCollection"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>
