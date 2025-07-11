@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ @Author:    Brandon van Rensburg
+  ~ @Copyright: 2025 DeployEcommerce (https://www.techarlie.co.za/)
+  ~ @Package:   DeployEcommerce_BuilderIO
+  -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">builderio_products_form.builderio_products_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Product Collection Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="DeployEcommerce\BuilderIO\Block\Adminhtml\Edit\BackButton"/>
+            <button name="delete" class="DeployEcommerce\BuilderIO\Block\Adminhtml\Edit\DeleteButton"/>
+            <button name="reset" class="DeployEcommerce\BuilderIO\Block\Adminhtml\Edit\ResetButton"/>
+            <button name="save" class="DeployEcommerce\BuilderIO\Block\Adminhtml\Edit\SaveButton"/>
+            <button name="save_and_continue" class="DeployEcommerce\BuilderIO\Block\Adminhtml\Edit\SaveAndContinueButton"/>
+        </buttons>
+        <namespace>builderio_products_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>builderio_products_form.builderio_products_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="builderio_products_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="builderio/products/save"/>
+        </settings>
+        <dataProvider class="DeployEcommerce\BuilderIO\Ui\DataProvider\ProductCollectionFormDataProvider" name="builderio_products_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <settings>
+            <label>General</label>
+        </settings>
+        <field name="is_active" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">product</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable Collection</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="name" formElement="input">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Collection Name</label>
+            </settings>
+        </field>
+        <field name="type" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Collection Type</label>
+                <dataScope>type</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="category" xsi:type="array">
+                                <item name="value" xsi:type="string">category</item>
+                                <item name="label" xsi:type="string" translate="true">Category</item>
+                            </option>
+                            <option name="sku" xsi:type="array">
+                                <item name="value" xsi:type="string">sku</item>
+                                <item name="label" xsi:type="string" translate="true">SKU</item>
+                            </option>
+                            <option name="condition" xsi:type="array">
+                                <item name="value" xsi:type="string">condition</item>
+                                <item name="label" xsi:type="string" translate="true">Condition</item>
+                            </option>
+                        </options>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+
+    <fieldset name="category_fieldset">
+        <settings>
+            <label>Category Configuration</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <visible>true</visible>
+            <imports>
+                <link name="visible">${$.provider}:data.type === 'category'</link>
+            </imports>
+        </settings>
+        <field name="category_id" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Category</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="DeployEcommerce\BuilderIO\Model\Config\Source\CategoryTree"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="category_sort_by" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Sort By</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="DeployEcommerce\BuilderIO\Model\Config\Source\CategorySortBy"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="category_limit" formElement="input">
+            <settings>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Limit</label>
+            </settings>
+        </field>
+    </fieldset>
+
+    <fieldset name="sku_fieldset">
+        <settings>
+            <label>SKU Configuration</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <visible>true</visible>
+            <imports>
+                <link name="visible">${$.provider}:data.type === 'sku'</link>
+            </imports>
+        </settings>
+        <field name="sku_list" formElement="textarea">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">SKUs</label>
+                <notice translate="true">Enter comma-separated SKUs</notice>
+            </settings>
+        </field>
+    </fieldset>
+
+    <htmlContent name="conditions_apply_to">
+        <argument name="data" xsi:type="array">
+            <item name="wrapper" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Conditions</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <settings>
+            <wrapper>
+                <canShow>true</canShow>
+                <componentType>fieldset</componentType>
+            </wrapper>
+        </settings>
+        <block class="DeployEcommerce\BuilderIO\Block\Adminhtml\ProductCollection\Edit\Tab\Conditions" name="builderio_productcollection_edit_tab_conditions"/>
+    </htmlContent>
+
+    <fieldset name="collection_details">
+        <settings>
+            <label>Collection Details</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+        <field name="product_count" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Product Count</label>
+                <disabled>true</disabled>
+            </settings>
+        </field>
+        <field name="url_key" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Collection URL</label>
+                <disabled>true</disabled>
+                <notice>The URL is automatically generated after saving.</notice>
+            </settings>
+        </field>
+    </fieldset>
+    <field name="form_glue" formElement="input" component="DeployEcommerce_BuilderIO/js/form/element/form-glue">
+        <settings>
+            <dataType>text</dataType>
+            <visible>false</visible>
+        </settings>
+    </field>
+</form>

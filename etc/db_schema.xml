@@ -96,4 +96,62 @@
         <column xsi:type="datetime" name="created_at" comment="Created At"/>
         <column xsi:type="datetime" name="updated_at" comment="Updated At"/>
     </table>
+
+    <table name="builderio_collections" resource="default" engine="innodb">
+        <column name="id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Primary Key"/>
+        <column name="name" xsi:type="varchar" length="255" nullable="false" comment="Name"/>
+        <column name="type" xsi:type="varchar" length="32" nullable="false" comment="Type"/>
+        <column name="config" xsi:type="text" nullable="true" comment="Configuration Data"/>
+        <column name="product_count" xsi:type="int" padding="10" unsigned="true" nullable="false" default="0"
+                comment="Product Count"/>
+        <column name="url_key" xsi:type="varchar" length="255" nullable="true" comment="URL Key"/>
+        <column name="is_active" xsi:type="smallint" unsigned="false" nullable="false" default="1"
+                comment="Is Active"/>
+        <column name="created_at" xsi:type="timestamp" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column name="updated_at" xsi:type="timestamp" nullable="false" default="CURRENT_TIMESTAMP" on_update="true"
+                comment="Update Time"/>
+        <column name="conditions_serialized" xsi:type="text" nullable="true" comment="Conditions Serialized"/>
+
+        <!-- Primary Key Constraint -->
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="builderio_product_collection_product_index"
+           resource="default"
+           charset="utf8mb4"
+           collation="utf8mb4_unicode_ci"
+           engine="innodb"
+           comment="BuilderIO Product Collection Product Index"
+    >
+        <column xsi:type="int" name="index_id" unsigned="true" nullable="false" identity="true" />
+        <column xsi:type="int" name="collection_id" unsigned="true" nullable="false" comment="Collection ID" />
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false" comment="Product ID" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="index_id"/>
+        </constraint>
+        <constraint xsi:type="foreign"
+                    referenceId="BUILDERIO_PRD_COLLECTION_PRD_IDX_COLLECTION_ID_CATALOG_RULE_RULE_ID"
+                    table="builderio_product_collection_product_index"
+                    column="collection_id"
+                    referenceTable="builderio_collections"
+                    referenceColumn="id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign"
+                    referenceId="BUILDERIO_PRD_COLLECTION_PRD_IDX_PRD_ID_CAT_PRD_ENTT_ENTT_ID"
+                    table="builderio_product_collection_product_index"
+                    column="product_id"
+                    referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+        <index referenceId="BUILDERIO_PRODUCT_COLLECTION_PRODUCT_INDEX_COLLECTION_ID" indexType="btree">
+            <column name="collection_id"/>
+        </index>
+        <index referenceId="BUILDERIO_PRODUCT_COLLECTION_PRODUCT_INDEX_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
 </schema>
