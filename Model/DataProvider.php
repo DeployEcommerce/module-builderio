@@ -1,17 +1,19 @@
 <?php
 /**
- * @Author:    Brandon van Rensburg
- * @Copyright: 2025 DeployEcommerce (https://www.techarlie.co.za/)
+ * @Author:    Brandon Bishop
+ * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
 
 namespace DeployEcommerce\BuilderIO\Model;
 
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory;
+use Magento\Framework\App\ObjectManager;
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Ui\DataProvider\AbstractDataProvider;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 
-class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class DataProvider extends AbstractDataProvider
 {
     /**
      * @var \DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Collection
@@ -56,7 +58,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $this->collection = $collectionFactory->create();
         $this->dataPersistor = $dataPersistor;
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
-        $this->pool = $pool ?: \Magento\Framework\App\ObjectManager::getInstance()->get(PoolInterface::class);
+        $this->pool = $pool ?: ObjectManager::getInstance()->get(PoolInterface::class);
     }
 
     /**

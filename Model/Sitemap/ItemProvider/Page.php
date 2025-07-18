@@ -7,9 +7,9 @@
 
 namespace DeployEcommerce\BuilderIO\Model\Sitemap\ItemProvider;
 
+use DeployEcommerce\BuilderIO\Model\ResourceModel\ContentPageModel\ContentPageCollectionFactory;
 use DeployEcommerce\BuilderIO\System\Config;
 use Magento\Sitemap\Model\SitemapItemInterfaceFactory;
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ContentPageModel\ContentPageCollectionFactory;
 
 /**
  * Class Page

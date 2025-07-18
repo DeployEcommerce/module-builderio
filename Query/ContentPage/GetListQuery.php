@@ -12,9 +12,9 @@ namespace DeployEcommerce\BuilderIO\Query\ContentPage;
 use DeployEcommerce\BuilderIO\Mapper\ContentPageDataMapper;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ContentPageModel\ContentPageCollection;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ContentPageModel\ContentPageCollectionFactory;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaInterface;
-use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchResultsInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
 

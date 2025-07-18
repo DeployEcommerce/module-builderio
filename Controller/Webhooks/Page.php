@@ -11,17 +11,18 @@ namespace DeployEcommerce\BuilderIO\Controller\Webhooks;
 
 use DeployEcommerce\BuilderIO\Api\Data\WebhookInterface;
 use DeployEcommerce\BuilderIO\Api\Data\WebhookInterfaceFactory;
-use DeployEcommerce\BuilderIO\Model\Queue\Handler\Handler;
 use DeployEcommerce\BuilderIO\Api\WebhookRepositoryInterface;
+use DeployEcommerce\BuilderIO\Model\Queue\Handler\Handler;
 use DeployEcommerce\BuilderIO\System\Config;
+use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\MessageQueue\PublisherInterface;
+use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use Psr\Log\LoggerInterface;
 
@@ -145,7 +146,7 @@ class Page implements CsrfAwareActionInterface
                     $this->handler->execute($webhook->getWebhookId());
                 }
 
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->logger->error($e->getMessage());
             }
         }

@@ -1,15 +1,16 @@
 <?php
 /**
- * @Author:    Brandon van Rensburg
- * @Copyright: 2025 DeployEcommerce (https://www.techarlie.co.za/)
+ * @Author:    Brandon Bishop
+ * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
 
 namespace DeployEcommerce\BuilderIO\Controller\Adminhtml\Products;
 
+use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
+use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
 
 class Delete extends Action
 {
@@ -42,7 +43,7 @@ class Delete extends Action
                 $this->productCollectionRepository->deleteById($id);
                 $this->messageManager->addSuccessMessage(__('The product collection has been deleted.'));
                 return $resultRedirect->setPath('*/*/');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
                 return $resultRedirect->setPath('*/*/edit', ['id' => $id]);
             }

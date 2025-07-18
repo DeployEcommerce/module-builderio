@@ -7,8 +7,8 @@
 
 namespace DeployEcommerce\BuilderIO\Model;
 
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ContentPageResource;
 use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterface;
+use DeployEcommerce\BuilderIO\Model\ResourceModel\ContentPageResource;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractModel;
 

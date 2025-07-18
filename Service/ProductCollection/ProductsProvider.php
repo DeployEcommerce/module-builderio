@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace DeployEcommerce\BuilderIO\Service\ProductCollection;
 
 use DeployEcommerce\BuilderIO\Api\Data\ProductCollectionResultInterface;
-use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\Framework\App\CacheInterface;
 use Magento\Framework\App\ResourceConnection;
 
@@ -39,7 +39,7 @@ class ProductsProvider implements ProductCollectionResultInterface
     public function __construct(
         ResourceConnection $resourceConnection,
         ProductRepositoryInterface $productRepository,
-        private \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
+        private CollectionFactory $productCollectionFactory,
         private CacheInterface $cache
     ) {
         $this->resourceConnection = $resourceConnection;

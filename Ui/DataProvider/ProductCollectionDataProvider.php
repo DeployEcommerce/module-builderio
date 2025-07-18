@@ -1,18 +1,18 @@
 <?php
 /**
- * @Author:    Brandon van Rensburg
- * @Copyright: 2025 DeployEcommerce (https://www.techarlie.co.za/)
+ * @Author:    Brandon Bishop
+ * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
 declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Ui\DataProvider;
 
-use Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider;
-use Magento\Framework\View\Element\UiComponent\DataProvider\Reporting;
+use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\SearchCriteriaBuilder;
 use Magento\Framework\App\RequestInterface;
-use Magento\Framework\Api\FilterBuilder;
+use Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider;
+use Magento\Framework\View\Element\UiComponent\DataProvider\Reporting;
 
 class ProductCollectionDataProvider extends DataProvider
 {

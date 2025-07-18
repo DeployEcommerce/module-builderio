@@ -11,7 +11,9 @@ namespace DeployEcommerce\BuilderIO\Block\System\Config;
 
 use DeployEcommerce\BuilderIO\System\Config;
 use Magento\Backend\Block\Template\Context;
+use Magento\Backend\Block\Widget\Button;
 use Magento\Config\Block\System\Config\Form\Field;
+use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Helper\SecureHtmlRenderer;
 
@@ -55,7 +57,7 @@ class Connect extends Field
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
+    protected function _getElementHtml(AbstractElement $element)
     {
         return $this->_toHtml();
     }
@@ -79,7 +81,7 @@ class Connect extends Field
     public function getButtonHtml()
     {
         $button = $this->getLayout()->createBlock(
-            \Magento\Backend\Block\Widget\Button::class
+            Button::class
         )->setData(
             [
                 'id' => 'connect_button',

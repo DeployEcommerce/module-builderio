@@ -6,10 +6,11 @@ namespace DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection;
 
 use DeployEcommerce\BuilderIO\Model\ProductCollection as Model;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection as ResourceModel;
-use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
-use Magento\Framework\Event\ManagerInterface as EventManager;
 use Magento\Framework\Data\Collection\Db\FetchStrategyInterface as FetchStrategy;
 use Magento\Framework\Data\Collection\EntityFactoryInterface as EntityFactory;
+use Magento\Framework\DataObject;
+use Magento\Framework\Event\ManagerInterface as EventManager;
+use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 use Psr\Log\LoggerInterface as Logger;
 
 class Collection extends SearchResult
@@ -46,7 +47,7 @@ class Collection extends SearchResult
         return parent::_afterLoad();
     }
 
-    public function afterLoad(\Magento\Framework\DataObject $object)
+    public function afterLoad(DataObject $object)
     {
         $object->setConfig(json_decode($object->getConfig()));
         parent::afterLoad($object);

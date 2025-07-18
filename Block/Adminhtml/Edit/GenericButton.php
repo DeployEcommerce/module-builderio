@@ -1,15 +1,15 @@
 <?php
 /**
- * @Author:    Brandon van Rensburg
- * @Copyright: 2025 DeployEcommerce (https://www.techarlie.co.za/)
+ * @Author:    Brandon Bishop
+ * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
 
 namespace DeployEcommerce\BuilderIO\Block\Adminhtml\Edit;
 
+use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
 use Magento\Backend\Block\Widget\Context;
 use Magento\Framework\Exception\NoSuchEntityException;
-use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
 
 class GenericButton
 {
