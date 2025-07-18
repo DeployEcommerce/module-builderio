@@ -1,7 +1,7 @@
 <?php
 /**
- * @Author:    Brandon van Rensburg
- * @Copyright: 2025 DeployEcommerce (https://www.techarlie.co.za/)
+ * @Author:    Brandon Bishop
+ * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
 declare(strict_types=1);
@@ -11,11 +11,11 @@ namespace DeployEcommerce\BuilderIO\Ui\DataProvider;
 use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Collection;
 use Magento\CatalogRule\Model\Data\Condition\Converter;
-use Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider;
-use Magento\Framework\View\Element\UiComponent\DataProvider\Reporting;
+use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\SearchCriteriaBuilder;
 use Magento\Framework\App\RequestInterface;
-use Magento\Framework\Api\FilterBuilder;
+use Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider;
+use Magento\Framework\View\Element\UiComponent\DataProvider\Reporting;
 
 class ProductCollectionFormDataProvider extends DataProvider
 {

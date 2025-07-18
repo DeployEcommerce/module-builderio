@@ -9,7 +9,10 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Block\System\Config;
 
-use Magento\Config\Block\System\Config\Form\Field;
+use Magento\Backend\Block\Template;
+use Magento\Backend\Block\Widget\Button;
+use Magento\Framework\Data\Form\Element\AbstractElement;
+use Magento\Framework\Data\Form\Element\Renderer\RendererInterface;
 use Magento\Framework\Exception\LocalizedException;
 
 /**
@@ -19,8 +22,8 @@ use Magento\Framework\Exception\LocalizedException;
  * It extends the Magento Form Field and uses a custom template to render the button.
  *
  */
-class Content extends \Magento\Backend\Block\Template implements
-    \Magento\Framework\Data\Form\Element\Renderer\RendererInterface
+class Content extends Template implements
+    RendererInterface
 {
     /**
      * @var string
@@ -35,7 +38,7 @@ class Content extends \Magento\Backend\Block\Template implements
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
+    protected function _getElementHtml(AbstractElement $element)
     {
         return $this->_toHtml();
     }
@@ -59,7 +62,7 @@ class Content extends \Magento\Backend\Block\Template implements
     public function getButtonHtml()
     {
         $button = $this->getLayout()->createBlock(
-            \Magento\Backend\Block\Widget\Button::class
+            Button::class
         )->setData(
             [
                 'id' => 'connect_button',
@@ -73,7 +76,7 @@ class Content extends \Magento\Backend\Block\Template implements
     /**
      * @inheritDoc
      */
-    public function render(\Magento\Framework\Data\Form\Element\AbstractElement $element)
+    public function render(AbstractElement $element)
     {
         return $this->_getElementHtml($element);
     }

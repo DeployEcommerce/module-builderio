@@ -1,22 +1,20 @@
 <?php
 /**
- * @Author:    Brandon van Rensburg
- * @Copyright: 2025 DeployEcommerce (https://www.techarlie.co.za/)
+ * @Author:    Brandon Bishop
+ * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
 namespace DeployEcommerce\BuilderIO\Controller\Adminhtml\Products;
 
-use Codeception\Exception\ThrowableWrapper;
 use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
 use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\UrlInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
-use Magento\Framework\Controller\Result\ForwardFactory;
-use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Message\ManagerInterface;
+use Throwable;
 
 class Save extends Action
 {
@@ -40,6 +38,7 @@ class Save extends Action
         DataPersistorInterface               $dataPersistor,
         ProductCollectionRepositoryInterface $productCollectionRepository,
         private ProductRepositoryInterface   $productRepository,
+        private UrlInterface                 $urlBuilder
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->productCollectionRepository = $productCollectionRepository;
@@ -73,7 +72,7 @@ class Save extends Action
                     foreach(explode(",",$data["config"]["sku_list"]) as $sku) {
                        $this->productRepository->get($sku);
                     }
-                } catch (\Throwable $e) {
+                } catch (Throwable $e) {
                     $this->messageManager->addError("There was an invalid sku within the sku list");
                     return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
                 }
@@ -83,24 +82,24 @@ class Save extends Action
 
             unset($data['condtions']);
 
-                $model = $model->setData($data);
+            $model = $model->setData($data);
 
-                $this->productCollectionRepository->save($model);
+            $this->productCollectionRepository->save($model);
 
-                //calling get products unset conditions serialised. So if we then resave the conditions will not save
-                $newModel = $this->productCollectionRepository->getById($model->getId());
+            //calling get products unset conditions serialized. So we copy the model to preserve the data
+            $newModel = $this->productCollectionRepository->getById($model->getId());
 
-                $model->setProductCount(count($newModel->getProducts()));
+            $model->setProductCount(count($newModel->getProducts()));
 
-                $this->productCollectionRepository->save($model);
+            $model->setUrlKey($this->urlBuilder->getBaseUrl(). "rest/all/V1/builderio/collections/". $model->getId());
+            $this->productCollectionRepository->save($model);
 
-                $this->messageManager->addSuccessMessage(__('You saved the product collection.'));
-                $this->dataPersistor->clear('builderio_product_collection');
+            $this->messageManager->addSuccessMessage(__('You saved the product collection.'));
+            $this->dataPersistor->clear('builderio_product_collection');
 
-                if ($this->getRequest()->getParam('back')) {
-                    return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId()]);
-                }
-                return $resultRedirect->setPath('*/*/');
+            if ($this->getRequest()->getParam('back')) {
+                return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId()]);
+            }
 
             $this->dataPersistor->set('builderio_product_collection', $data);
             return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);

@@ -6,7 +6,7 @@ namespace DeployEcommerce\BuilderIO\Block\Adminhtml\Products\Edit\Tab;
 use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
-use Magento\CatalogRule\Model\Rule\Condition\Combine;
+use Magento\Framework\Data\Form;
 use Magento\Framework\Data\FormFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Registry;
@@ -74,7 +74,7 @@ class Conditions extends Generic implements TabInterface
         $model,
         string $fieldsetId = 'conditions_fieldset',
         string $formName = 'builderio_product_collection_form'
-    ): \Magento\Framework\Data\Form {
+    ): Form {
         $id = $this->getRequest()->getParam('id');
 
         if ($id) {

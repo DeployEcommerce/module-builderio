@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Model\ResourceModel;
 
-use Magento\Framework\DataObject;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class ProductCollection extends AbstractDb

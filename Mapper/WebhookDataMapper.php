@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Mapper;
 
-use DeployEcommerce\BuilderIO\Model\WebhookModel;
 use DeployEcommerce\BuilderIO\Api\Data\WebhookInterface;
 use DeployEcommerce\BuilderIO\Api\Data\WebhookInterfaceFactory;
+use DeployEcommerce\BuilderIO\Model\WebhookModel;
 use Magento\Framework\DataObject;
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 

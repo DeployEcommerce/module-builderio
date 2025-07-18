@@ -1,6 +1,6 @@
 <?php
 /**
- * @Author:    Brandon van Rensburg
+ * @Author:    Brandon Bishop
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
  * @Package:   DeployEcommerce_BuilderIO
  */

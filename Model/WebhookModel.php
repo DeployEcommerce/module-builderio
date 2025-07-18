@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace DeployEcommerce\BuilderIO\Model;
 
 use DeployEcommerce\BuilderIO\Api\Data\WebhookInterface;
+use DeployEcommerce\BuilderIO\Model\ResourceModel\WebhookResource;
 use Magento\Framework\Data\Collection\AbstractDb;
 use Magento\Framework\DataObject\IdentityInterface;
-use DeployEcommerce\BuilderIO\Model\ResourceModel\WebhookResource;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\Context;
 use Magento\Framework\Model\ResourceModel\AbstractResource;

@@ -1,7 +1,7 @@
 <?php
 /**
- * @Author:    Brandon van Rensburg
- * @Copyright: 2025 DeployEcommerce (https://www.techarlie.co.za/)
+ * @Author:    Brandon Bishop
+ * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
 declare(strict_types=1);
@@ -66,7 +66,6 @@ class Conditions extends Generic implements TabInterface
     }
 
     /**
-     * @return TabInterface
      * @throws LocalizedException
      */
     public function getTabTitle()
@@ -177,21 +176,17 @@ class Conditions extends Generic implements TabInterface
 
     public function getTabLabel()
     {
-        // TODO: Implement getTabLabel() method.
     }
 
     public function getTabClass()
     {
-        // TODO: Implement getTabClass() method.
     }
 
     public function getTabUrl()
     {
-        // TODO: Implement getTabUrl() method.
     }
 
     public function isAjaxLoaded()
     {
-        // TODO: Implement isAjaxLoaded() method.
     }
 }

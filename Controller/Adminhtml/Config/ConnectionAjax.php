@@ -9,11 +9,11 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Controller\Adminhtml\Config;
 
+use DeployEcommerce\BuilderIO\Service\BuilderIO\AdminApi;
 use GuzzleHttp\Exception\GuzzleException;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
-use DeployEcommerce\BuilderIO\Service\BuilderIO\AdminApi;
 
 /**
  * Class Ajax

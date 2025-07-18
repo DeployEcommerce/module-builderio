@@ -1,6 +1,6 @@
 <?php
 /**
- * @Author:    Brandon van Rensburg
+ * @Author:    Brandon Bishop
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
  * @Package:   DeployEcommerce_BuilderIO
  */
@@ -13,56 +13,26 @@ use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
 use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection as ProductCollectionResourceModel;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory as ProductCollectionCollectionFactory;
+use Exception;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+use Magento\Framework\Model\ResourceModel\Db\Context;
 
 class ProductCollectionRepository extends AbstractDb implements ProductCollectionRepositoryInterface
 {
-    /**
-     * @var \DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection
-     */
-    private $resource;
-
-    /**
-     * @var \DeployEcommerce\BuilderIO\Model\ProductCollectionFactory
-     */
-    private $productCollectionFactory;
-
-    /**
-     * @var \DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory
-     */
-    private $collectionFactory;
-
-    /**
-     * @var \DeployEcommerce\BuilderIO\Api\Data\ProductCollectionSearchResultsInterfaceFactory
-     */
-    private $searchResultsFactory;
-
-    /**
-     * @var \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface
-     */
-    private $collectionProcessor;
-
-    /**
-     * @param \DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection $resource
-     * @param \DeployEcommerce\BuilderIO\Model\ProductCollectionFactory $productCollectionFactory
-     * @param \DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory $collectionFactory
-     * @param \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface $collectionProcessor
-     */
     public function __construct(
-        ProductCollectionResourceModel $resource,
-        ProductCollectionFactory $productCollectionFactory,
-        ProductCollectionCollectionFactory $collectionFactory,
-        CollectionProcessorInterface $collectionProcessor
-    ) {
-        $this->resource = $resource;
-        $this->productCollectionFactory = $productCollectionFactory;
-        $this->collectionFactory = $collectionFactory;
-        $this->collectionProcessor = $collectionProcessor;
+        private ProductCollectionResourceModel $resource,
+        private ProductCollectionFactory $productCollectionFactory,
+        private ProductCollectionCollectionFactory $collectionFactory,
+        private CollectionProcessorInterface $collectionProcessor,
+        Context $context,
+        $connectionName = null)
+    {
+        parent::__construct($context, $connectionName);
     }
 
     /**
@@ -72,7 +42,7 @@ class ProductCollectionRepository extends AbstractDb implements ProductCollectio
     {
         try {
             $this->resource->save($productCollection);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             throw new CouldNotSaveException(__($exception->getMessage()));
         }
         return $productCollection;
@@ -107,14 +77,11 @@ class ProductCollectionRepository extends AbstractDb implements ProductCollectio
         return $searchResults;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function delete($productCollection)
     {
         try {
             $this->resource->delete($productCollection);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             throw new CouldNotDeleteException(__($exception->getMessage()));
         }
         return true;

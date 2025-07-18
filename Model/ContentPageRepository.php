@@ -8,15 +8,16 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Model;
 
+use DeployEcommerce\BuilderIO\Api\ContentPageRepositoryInterface;
 use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterface;
 use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterfaceFactory;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ContentPageModel\ContentPageCollectionFactory;
-use DeployEcommerce\BuilderIO\Api\ContentPageRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Throwable;
 
 class ContentPageRepository implements ContentPageRepositoryInterface
 {

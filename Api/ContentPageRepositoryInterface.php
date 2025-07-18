@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Api;
 
+use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\LocalizedException;
-use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterface;
 
 /**
  * Interface ContentPageRepositoryInterface

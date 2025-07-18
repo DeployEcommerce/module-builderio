@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Mapper;
 
-use DeployEcommerce\BuilderIO\Model\ContentPageModel;
 use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterface;
 use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterfaceFactory;
+use DeployEcommerce\BuilderIO\Model\ContentPageModel;
 use Magento\Framework\DataObject;
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
