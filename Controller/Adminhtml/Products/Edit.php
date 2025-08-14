@@ -6,7 +6,9 @@
  */
 namespace DeployEcommerce\BuilderIO\Controller\Adminhtml\Products;
 
+use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
 use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
+use DeployEcommerce\BuilderIO\Api\ProductCollectionInterfaceFactory;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\ForwardFactory;
@@ -29,6 +31,7 @@ class Edit extends Action
         Context $context,
         PageFactory $resultPageFactory,
         protected ProductCollectionRepositoryInterface $productCollectionRepository,
+        protected ProductCollectionInterfaceFactory $productCollectionInterfaceFactory,
         protected Registry $registry,
         protected ForwardFactory $forwardFactory
     ) {
@@ -41,19 +44,27 @@ class Edit extends Action
      */
     public function execute(): Page
     {
-        $id = $this->getRequest()->getParam("id");
+        $id = (int) $this->getRequest()->getParam('id');
 
-        $model = $this->productCollectionRepository->getById($id);
+        if ($id) {
+            $model = $this->productCollectionRepository->getById($id);
+            if (!$model) {
+                $this->messageManager->addErrorMessage(__('This product collection no longer exists.'));
 
-        if(!$model){
-            $this->forwardFactory->create([
-                "action" => "builderio/products/index",
-            ]);
+                $resultRedirect = $this->resultRedirectFactory->create();
+                return $resultRedirect->setPath('*/*/');
+            }
+        } else {
+            $model = $this->productCollectionInterfaceFactory->create();
         }
 
         $this->registry->register('builderio_productcollection', $model);
 
         $resultPage = $this->resultPageFactory->create();
+        $resultPage->addBreadcrumb(
+            $id ? __('Edit Product Collection') : __('New Product Collection'),
+            $id ? __('Edit Product Collection') : __('New Product Collection')
+        );
         $resultPage->getConfig()->getTitle()->prepend(__('Edit Product Collection'));
         return $resultPage;
     }

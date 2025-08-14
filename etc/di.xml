@@ -70,31 +70,6 @@
             <argument name="resourceModel" xsi:type="string">DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection</argument>
         </arguments>
     </virtualType>
-    <type name="DeployEcommerce\BuilderIO\Controller\Adminhtml\Products\Save">
-        <arguments>
-            <argument name="productCollectionRepository" xsi:type="object">DeployEcommerce\BuilderIO\Model\ProductCollectionRepository\Proxy</argument>
-        </arguments>
-    </type>
-    <type name="DeployEcommerce\BuilderIO\Controller\Adminhtml\Products\Edit">
-        <arguments>
-            <argument name="productCollectionRepository" xsi:type="object">DeployEcommerce\BuilderIO\Model\ProductCollectionRepository\Proxy</argument>
-        </arguments>
-    </type>
-    <type name="DeployEcommerce\BuilderIO\Controller\Adminhtml\Products\Delete">
-        <arguments>
-            <argument name="productCollectionRepository" xsi:type="object">DeployEcommerce\BuilderIO\Model\ProductCollectionRepository\Proxy</argument>
-        </arguments>
-    </type>
-    <type name="DeployEcommerce\BuilderIO\Controller\Adminhtml\Products\NewAction">
-        <arguments>
-            <argument name="productCollectionRepository" xsi:type="object">DeployEcommerce\BuilderIO\Model\ProductCollectionRepository\Proxy</argument>
-        </arguments>
-    </type>
-    <type name="DeployEcommerce\BuilderIO\Model\ProductCollectionRepository">
-        <arguments>
-            <argument name="collectionFactory" xsi:type="object">DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory\Proxy</argument>
-        </arguments>
-    </type>
     <type name="DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Collection">
         <arguments>
             <argument name="mainTable" xsi:type="string">builderio_collections</argument>
