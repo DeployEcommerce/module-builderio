@@ -4,6 +4,8 @@
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
+declare(strict_types=1);
+
 namespace DeployEcommerce\BuilderIO\Controller\Adminhtml\Products;
 
 use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
@@ -22,16 +24,6 @@ use Throwable;
 class Save extends Action
 {
     /**
-     * @var DataPersistorInterface
-     */
-    private DataPersistorInterface $dataPersistor;
-
-    /**
-     * @var ProductCollectionRepositoryInterface
-     */
-    private ProductCollectionRepositoryInterface $productCollectionRepository;
-
-    /**
      * @param Context $context
      * @param DataPersistorInterface $dataPersistor
      * @param ProductCollectionRepositoryInterface $productCollectionRepository
@@ -41,14 +33,12 @@ class Save extends Action
      */
     public function __construct(
         Context $context,
-        DataPersistorInterface $dataPersistor,
-        ProductCollectionRepositoryInterface $productCollectionRepository,
+        private DataPersistorInterface $dataPersistor,
+        private ProductCollectionRepositoryInterface $productCollectionRepository,
         private ProductRepositoryInterface $productRepository,
         private ProductCollectionInterfaceFactory $productCollectionInterfaceFactory,
         private UrlInterface $urlBuilder
     ) {
-        $this->dataPersistor = $dataPersistor;
-        $this->productCollectionRepository = $productCollectionRepository;
         parent::__construct($context);
     }
 

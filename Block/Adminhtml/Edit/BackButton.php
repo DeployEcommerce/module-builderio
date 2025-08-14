@@ -8,9 +8,6 @@ namespace DeployEcommerce\BuilderIO\Block\Adminhtml\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
-/**
- * Class BackButton
- */
 class BackButton extends GenericButton implements ButtonProviderInterface
 {
     /**

@@ -6,6 +6,7 @@
  */
 
 namespace DeployEcommerce\BuilderIO\Api;
+
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 /**

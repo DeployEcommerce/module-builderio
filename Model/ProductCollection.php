@@ -69,8 +69,7 @@ class ProductCollection extends Rule implements ProductCollectionInterface
         AttributeValueFactory                                          $customAttributeFactory = null,
         Json                                                           $serializer = null,
         RuleResourceModel                                              $ruleResourceModel = null,
-    )
-    {
+    ) {
         parent::__construct($context, $registry, $formFactory, $localeDate, $productCollectionFactory, $storeManager, $combineFactory, $actionCollectionFactory, $productFactory, $resourceIterator, $customerSession, $catalogRuleData, $cacheTypesList, $dateTime, $ruleProductProcessor, $resource, $resourceCollection, $relatedCacheTypes, $data, $extensionFactory, $customAttributeFactory, $serializer, $ruleResourceModel, $conditionsToCollectionApplier);
     }
 
@@ -79,7 +78,7 @@ class ProductCollection extends Rule implements ProductCollectionInterface
     {
         parent::afterLoad();
         $config = $this->getConfig();
-        if(is_string($config)) {
+        if (is_string($config)) {
             $this->setConfig(json_decode($config, true));
         }
         return $this;
@@ -87,7 +86,7 @@ class ProductCollection extends Rule implements ProductCollectionInterface
 
     public function beforeSave()
     {
-        if(is_array($this->getConfig())) {
+        if (is_array($this->getConfig())) {
             $this->setConfig(json_encode($this->getConfig()));
         }
         return parent::beforeSave();
@@ -210,7 +209,8 @@ class ProductCollection extends Rule implements ProductCollectionInterface
         return $this->productCount;
     }
 
-    private function getConditionProducts():array {
+    private function getConditionProducts():array
+    {
 
         $productCollection = $this->productCollectionFactory->create();
         $productCollection->addAttributeToSelect('*');
@@ -226,8 +226,9 @@ class ProductCollection extends Rule implements ProductCollectionInterface
         return $matchingProducts;
     }
 
-    private function getSkuProducts(): array {
-        $sku_list = explode("," ,$this->getData("config/sku_list"));
+    private function getSkuProducts(): array
+    {
+        $sku_list = explode(",", $this->getData("config/sku_list"));
 
         $matchingProducts = [];
 
@@ -239,7 +240,8 @@ class ProductCollection extends Rule implements ProductCollectionInterface
         return $matchingProducts;
     }
 
-    private function getCategoryProducts(): array {
+    private function getCategoryProducts(): array
+    {
         /** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection */
         $category = $this->categoryRepository->get($this->getData("config/category_id"));
 
@@ -257,8 +259,8 @@ class ProductCollection extends Rule implements ProductCollectionInterface
 
         $products = $productCollection->getItems();
 
-        if($this->getData("config/category_limit")){
-            $products = array_slice(array_values($products),0, (int) $this->getData("config/category_limit"));
+        if ($this->getData("config/category_limit")) {
+            $products = array_slice(array_values($products), 0, (int) $this->getData("config/category_limit"));
         }
 
         return $products;
