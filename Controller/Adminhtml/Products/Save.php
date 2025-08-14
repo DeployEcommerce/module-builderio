@@ -7,13 +7,16 @@
 namespace DeployEcommerce\BuilderIO\Controller\Adminhtml\Products;
 
 use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
+use DeployEcommerce\BuilderIO\Api\ProductCollectionInterfaceFactory;
 use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\UrlInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Throwable;
 
 class Save extends Action
@@ -21,24 +24,28 @@ class Save extends Action
     /**
      * @var DataPersistorInterface
      */
-    private $dataPersistor;
+    private DataPersistorInterface $dataPersistor;
 
     /**
      * @var ProductCollectionRepositoryInterface
      */
-    private $productCollectionRepository;
+    private ProductCollectionRepositoryInterface $productCollectionRepository;
 
     /**
      * @param Context $context
      * @param DataPersistorInterface $dataPersistor
      * @param ProductCollectionRepositoryInterface $productCollectionRepository
+     * @param ProductRepositoryInterface $productRepository
+     * @param ProductCollectionInterfaceFactory $productCollectionInterfaceFactory
+     * @param UrlInterface $urlBuilder
      */
     public function __construct(
-        Context                              $context,
-        DataPersistorInterface               $dataPersistor,
+        Context $context,
+        DataPersistorInterface $dataPersistor,
         ProductCollectionRepositoryInterface $productCollectionRepository,
-        private ProductRepositoryInterface   $productRepository,
-        private UrlInterface                 $urlBuilder
+        private ProductRepositoryInterface $productRepository,
+        private ProductCollectionInterfaceFactory $productCollectionInterfaceFactory,
+        private UrlInterface $urlBuilder
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->productCollectionRepository = $productCollectionRepository;
@@ -46,7 +53,8 @@ class Save extends Action
     }
 
     /**
-     * @return \Magento\Framework\Controller\Result\Redirect
+     * @return Redirect
+     * @throws NoSuchEntityException
      */
     public function execute()
     {
@@ -54,23 +62,19 @@ class Save extends Action
         $data = $this->getRequest()->getPostValue();
 
         if ($data) {
-            $id = $this->getRequest()->getParam('id');
-
-            if (empty($data['id'])) {
-                $data['id'] = null;
-            }
+            $id = (int) $this->getRequest()->getParam('id');
 
             try {
                 $model = $this->productCollectionRepository->getById($id);
             } catch (LocalizedException $e) {
-                $model = $this->productCollectionRepository->create();
+                $model = $this->productCollectionInterfaceFactory->create();
             }
 
-            if($model->getType() == ProductCollectionInterface::TYPE_SKU){
+            if ($model->getType() == ProductCollectionInterface::TYPE_SKU) {
                 //validate skus in sku list
                 try {
-                    foreach(explode(",",$data["config"]["sku_list"]) as $sku) {
-                       $this->productRepository->get($sku);
+                    foreach (explode(",", $data["config"]["sku_list"]) as $sku) {
+                        $this->productRepository->get($sku);
                     }
                 } catch (Throwable $e) {
                     $this->messageManager->addError("There was an invalid sku within the sku list");
@@ -81,9 +85,7 @@ class Save extends Action
             }
 
             unset($data['condtions']);
-
             $model = $model->setData($data);
-
             $this->productCollectionRepository->save($model);
 
             //calling get products unset conditions serialized. So we copy the model to preserve the data
@@ -92,7 +94,16 @@ class Save extends Action
             $model->setProductCount(count($newModel->getProducts()));
 
             $model->setUrlKey($this->urlBuilder->getBaseUrl(). "rest/all/V1/builderio/collections/". $model->getId());
-            $this->productCollectionRepository->save($model);
+
+            try {
+                $this->productCollectionRepository->save($model);
+            } catch (LocalizedException $e) {
+                $this->messageManager->addErrorMessage(__('Error saving product collection: %1', $e->getMessage()));
+                return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
+            } catch (Throwable $e) {
+                $this->messageManager->addErrorMessage(__('An unexpected error occurred while saving the product collection.'));
+                return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
+            }
 
             $this->messageManager->addSuccessMessage(__('You saved the product collection.'));
             $this->dataPersistor->clear('builderio_product_collection');
