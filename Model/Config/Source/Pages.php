@@ -21,7 +21,7 @@ class Pages implements OptionSourceInterface
     public function __construct(
         private ContentPageRepository $contentPageRepository,
         private SearchCriteriaBuilder $searchCriteriaBuilder
-    ){
+    ) {
     }
 
     /**
@@ -35,7 +35,7 @@ class Pages implements OptionSourceInterface
         $searchCriteria = $this->searchCriteriaBuilder->create();
         $pages = $this->contentPageRepository->getList($searchCriteria);
 
-        if($pages->getTotalCount()) {
+        if ($pages->getTotalCount()) {
             $items = $pages->getItems();
             foreach ($items as $page) {
                 $options[] = ['value' => $page->getId(), 'label' => $page->getTitle()];

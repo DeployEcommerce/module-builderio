@@ -39,7 +39,7 @@ class ProductCollectionDataProvider extends DataProvider
             $data
         );
     }
-        public function getSearchResult()
+    public function getSearchResult()
     {
         $searchResult = parent::getSearchResult();
         foreach ($searchResult->getItems() as $item) {

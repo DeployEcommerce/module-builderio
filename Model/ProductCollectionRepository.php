@@ -30,8 +30,8 @@ class ProductCollectionRepository extends AbstractDb implements ProductCollectio
         private ProductCollectionCollectionFactory $collectionFactory,
         private CollectionProcessorInterface $collectionProcessor,
         Context $context,
-        $connectionName = null)
-    {
+        $connectionName = null
+    ) {
         parent::__construct($context, $connectionName);
     }
 

@@ -13,15 +13,15 @@
     <div id="<?= $block->getHtmlId() ?>" class="rule-tree">
         <div class="rule-tree-header">
             <div class="rule-tree-header-title">
-                <?= $block->escapeHtml(__('Conditions')) ?>
+                <?= $escaper->escapeHtml(__('Conditions')) ?>
             </div>
             <div class="rule-tree-header-actions">
                 <button
                     type="button"
                     class="action-add"
                     id="<?= $block->getNewChildUrl() ?>"
-                    title="<?= $block->escapeHtmlAttr(__('Add')) ?>">
-                    <span><?= $block->escapeHtml(__('Add')) ?></span>
+                    title="<?= $escaper->escapeHtmlAttr(__('Add')) ?>">
+                    <span><?= $escaper->escapeHtml(__('Add')) ?></span>
                 </button>
             </div>
         </div>
@@ -31,7 +31,7 @@
     </div>
 </div>
 
-<input type="hidden" name="<?= $block->escapeHtmlAttr($block->getName()) ?>" value="<?= $block->escapeHtmlAttr($block->getConditions()->asArray(true)) ?>" data-form-part="<?= $block->escapeHtmlAttr($block->getFormName()) ?>"/>
+<input type="hidden" name="<?= $escaper->escapeHtmlAttr($block->getName()) ?>" value="<?= $escaper->escapeHtmlAttr($block->getConditions()->asArray(true)) ?>" data-form-part="<?= $escaper->escapeHtmlAttr($block->getFormName()) ?>"/>
 
 <script>
 require([
@@ -44,8 +44,8 @@ require([
 var <?= $block->getJsFormObject() ?> = new VarienForm('<?= $block->getFormName() ?>');
 var rule_conditions_fieldset = {
     id: '<?= $block->getHtmlId() ?>',
-    newChildUrl: '<?= $block->escapeUrl($block->getNewChildUrl()) ?>',
-    removeUrl: '<?= $block->escapeUrl($block->getRemoveUrl()) ?>',
+    newChildUrl: '<?= $escaper->escapeUrl($block->getNewChildUrl()) ?>',
+    removeUrl: '<?= $escaper->escapeUrl($block->getRemoveUrl()) ?>',
     form: <?= $block->getJsFormObject() ?>,
     canShow: 1,
     childCount: 0,

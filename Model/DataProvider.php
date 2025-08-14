@@ -106,4 +106,3 @@ class DataProvider extends AbstractDataProvider
         return $data;
     }
 }
-

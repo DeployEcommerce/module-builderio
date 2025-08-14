@@ -12,7 +12,8 @@ namespace DeployEcommerce\BuilderIO\Api;
  *
  * @api
  */
-interface ProductCollectionInterface {
+interface ProductCollectionInterface
+{
 
     const ID = "id";
     const TYPE = "type";

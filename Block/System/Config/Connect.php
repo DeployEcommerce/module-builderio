@@ -44,7 +44,7 @@ class Connect extends Field
         private Config $config,
         array $data = [],
         ?SecureHtmlRenderer $secureRenderer = null
-    ){
+    ) {
         parent::__construct($context, $data, $secureRenderer);
     }
 

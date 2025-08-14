@@ -4,7 +4,6 @@
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
  * @Package:   DeployEcommerce_BuilderIO
  */
-
 declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Service;
@@ -65,7 +64,6 @@ class BuilderIO
 
         } catch (Exception $e) {
             $this->settings->logError(__("API failure %1 for endpoint %2", $e->getMessage(), $endpoint)->__toString());
-            return null;
         }
 
         return null;
