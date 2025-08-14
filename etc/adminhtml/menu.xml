@@ -11,6 +11,9 @@
         <add id="DeployEcommerce_BuilderIO::management" sortOrder="10" title="Builder IO"
              module="DeployEcommerce_BuilderIO" parent="Magento_Backend::content"
              resource="DeployEcommerce_BuilderIO::management" translate="title"/>
+        <add id="DeployEcommerce_BuilderIO::product_collections" sortOrder="10" title="Product Collections"
+             module="DeployEcommerce_BuilderIO" parent="DeployEcommerce_BuilderIO::management"
+            resource="DeployEcommerce_BuilderIO::products" translate="title" action="builderio/products/index"/>
         <add id="DeployEcommerce_BuilderIO::listing" sortOrder="20" title="Page Content"
              module="DeployEcommerce_BuilderIO" parent="DeployEcommerce_BuilderIO::management"
              resource="DeployEcommerce_BuilderIO::listing" translate="title" action="builderio/content/page"/>
@@ -20,8 +23,5 @@
         <add id="DeployEcommerce_BuilderIO::management_configuration" sortOrder="40" title="Configuration"
              module="DeployEcommerce_BuilderIO" parent="DeployEcommerce_BuilderIO::management"
              resource="DeployEcommerce_BuilderIO::management" translate="title" action="adminhtml/system_config/edit/section/builder_io"/>
-        <add id="DeployEcommerce_BuilderIO::product_collections" sortOrder="40" title="Product Collections"
-             module="DeployEcommerce_BuilderIO" parent="DeployEcommerce_BuilderIO::management"
-            resource="DeployEcommerce_BuilderIO::products" translate="title" action="builderio/products/index"/>
     </menu>
 </config>
