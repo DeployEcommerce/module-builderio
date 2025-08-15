@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace DeployEcommerce\BuilderIO\Controller\View;
 
 use DeployEcommerce\BuilderIO\Api\ContentPageRepositoryInterface;
-use DeployEcommerce\BuilderIO\Helper\Settings;
 use DeployEcommerce\BuilderIO\Registry\CurrentPageContent;
 use DeployEcommerce\BuilderIO\Service\BuilderIO\Page as PageService;
 use DeployEcommerce\BuilderIO\System\Config;
@@ -36,7 +35,6 @@ class Index extends View implements HttpGetActionInterface
      * @param RequestInterface $request
      * @param PageHelper $pageHelper
      * @param ForwardFactory $resultForwardFactory
-     * @param Settings $settings
      * @param PageFactory $pageFactory
      * @param PageService $pageService
      * @param CurrentPageContent $currentCmsContent
@@ -48,7 +46,6 @@ class Index extends View implements HttpGetActionInterface
         RequestInterface                       $request,
         PageHelper                             $pageHelper,
         ForwardFactory                         $resultForwardFactory,
-        private Settings                       $settings,
         private PageFactory                    $pageFactory,
         private PageService                    $pageService,
         private CurrentPageContent             $currentCmsContent,

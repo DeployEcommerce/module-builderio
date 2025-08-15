@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace DeployEcommerce\BuilderIO\Controller\View;
 
 use DeployEcommerce\BuilderIO\Api\ContentPageRepositoryInterface;
-use DeployEcommerce\BuilderIO\Helper\Settings;
 use DeployEcommerce\BuilderIO\Registry\CurrentPageContent;
 use DeployEcommerce\BuilderIO\Service\BuilderIO\Page as PageService;
 use Magento\Cms\Controller\Page\View;
@@ -35,7 +34,6 @@ class Page extends View implements HttpGetActionInterface
      * @param RequestInterface $request
      * @param PageHelper $pageHelper
      * @param ForwardFactory $resultForwardFactory
-     * @param Settings $settings
      * @param PageFactory $pageFactory
      * @param PageService $pageService
      * @param CurrentPageContent $currentCmsContent
@@ -46,7 +44,6 @@ class Page extends View implements HttpGetActionInterface
         RequestInterface                       $request,
         PageHelper                             $pageHelper,
         ForwardFactory                         $resultForwardFactory,
-        private Settings                       $settings,
         private PageFactory                    $pageFactory,
         private PageService                    $pageService,
         private CurrentPageContent             $currentCmsContent,

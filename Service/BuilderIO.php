@@ -8,12 +8,12 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Service;
 
-use DeployEcommerce\BuilderIO\Helper\Settings;
 use DeployEcommerce\BuilderIO\System\Config;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Response;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class BuilderIO
@@ -28,13 +28,13 @@ class BuilderIO
      * BuilderIO constructor.
      *
      * @param Client $client
-     * @param Settings $settings
      * @param Config $config
+     * @param LoggerInterface $logger
      */
     public function __construct(
-        private Client      $client,
-        private Settings    $settings,
-        private Config      $config
+        private Client          $client,
+        private Config          $config,
+        private LoggerInterface $logger
     ) {
     }
 
@@ -63,7 +63,14 @@ class BuilderIO
             }
 
         } catch (Exception $e) {
-            $this->settings->logError(__("API failure %1 for endpoint %2", $e->getMessage(), $endpoint)->__toString());
+            $this->logger->error('BuilderIO GET Request failed', [
+                'endpoint' => $endpoint,
+                'params' => $params,
+                'store_id' => $store_id,
+                'error_message' => $e->getMessage(),
+                'error_code' => $e->getCode(),
+                'exception_class' => get_class($e)
+            ]);
         }
 
         return null;
@@ -98,7 +105,14 @@ class BuilderIO
             }
 
         } catch (Exception $e) {
-            $this->settings->logError(__("API failure %1 for endpoint %2", $e->getMessage(), $endpoint)->__toString());
+            $this->logger->error('BuilderIO POST Request failed', [
+                'endpoint' => $endpoint,
+                'body' => $body,
+                'store_id' => $store_id,
+                'error_message' => $e->getMessage(),
+                'error_code' => $e->getCode(),
+                'exception_class' => get_class($e)
+            ]);
             return null;
         }
 

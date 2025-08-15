@@ -19,6 +19,11 @@ use Magento\Eav\Model\Config as EavConfig;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\DataObject;
 use Magento\Framework\UrlInterface;
+use Magento\Catalog\Block\Product\ImageBuilder;
+use Magento\Framework\Pricing\Helper\Data as PricingHelper;
+use Magento\Tax\Helper\Data as TaxHelper;
+use Magento\Framework\App\Area;
+use Magento\Store\Model\App\Emulation;
 
 class ProductsProvider implements ProductCollectionResultInterface
 {
@@ -34,6 +39,8 @@ class ProductsProvider implements ProductCollectionResultInterface
      * @param EavConfig $eavConfig
      * @param CacheInterface $cache
      * @param StoreManagerInterface $storeManager
+     * @param PricingHelper $pricingHelper
+     * @param TaxHelper $taxHelper
      */
     public function __construct(
         private ResourceConnection $resourceConnection,
@@ -42,7 +49,11 @@ class ProductsProvider implements ProductCollectionResultInterface
         private CatalogConfig $catalogConfig,
         private EavConfig $eavConfig,
         private CacheInterface $cache,
-        private StoreManagerInterface $storeManager
+        private StoreManagerInterface $storeManager,
+        private PricingHelper $pricingHelper,
+        private TaxHelper $taxHelper,
+        private ImageBuilder $imageBuilder,
+        private Emulation $emulation
     ) {
     }
 
@@ -77,10 +88,7 @@ class ProductsProvider implements ProductCollectionResultInterface
         $productIds = $connection->fetchCol($select);
 
         if (empty($productIds)) {
-            return [[
-                'products' => [],
-                'count' => 0
-            ]];
+            return [];
         }
 
         $productCollection = $this->productCollectionFactory->create();
@@ -91,42 +99,86 @@ class ProductsProvider implements ProductCollectionResultInterface
             ->addFinalPrice()
             ->addTaxPercents()
             ->addUrlRewrite()
+            ->addPriceData()
             ->addAttributeToFilter('visibility', ([
                 Visibility::VISIBILITY_IN_CATALOG,
                 Visibility::VISIBILITY_BOTH
             ]));
 
         $loadvalues = $this->getAttributesToLoadValues();
+        $products = [];
+
+        $this->emulation->startEnvironmentEmulation($storeId, Area::AREA_FRONTEND, true);
 
         // Process image URLs for each product
         foreach ($productCollection->getItems() as $product) {
-            $this->processProductImageUrls($product);
+
+            $products[$product->getId()] = [
+                'name' => $product->getName(),
+                'sku' => $product->getSku(),
+                'url' => $product->getProductUrl(),
+                'image' => $this->imageBuilder->create($product, 'product_page_image_large')->getImageUrl(),
+                'small_image' => $this->imageBuilder->create($product, 'product_page_image_small')->getImageUrl(),
+                'thumbnail' => $this->imageBuilder->create($product, 'product_thumbnail_image')->getImageUrl(),
+                'type_id' => $product->getTypeId(),
+                'visibility' => $product->getVisibility(),
+                'status' => $product->getStatus(),
+                'weight' => $product->getWeight(),
+            ];
+
+            $final_price = $product->getPriceInfo()->getPrice('final_price')->getAmount()->getValue();
+            $regular_price = $product->getPriceInfo()->getPrice('regular_price')->getAmount()->getValue();
+
+            if ($final_price < $regular_price) {
+                $products[$product->getId()]['regular_price']['label'] = __('Regular Price')->getText();
+                $products[$product->getId()]['regular_price']['value'] = $this->getFormattedPrice($regular_price);
+
+                $products[$product->getId()]['price']['label'] = __('Special Price')->getText();
+                $products[$product->getId()]['price']['value'] = $this->getFormattedPrice($final_price);
+            } else {
+                $products[$product->getId()]['price']['label'] = __('Regular Price')->getText();
+                $products[$product->getId()]['price']['value'] = $this->getFormattedPrice($final_price);
+            }
+
+            if ($product->getTypeId() == 'configurable') {
+                $products[$product->getId()]['price_label'] = __('From')->getText();
+
+                $products[$product->getId()]['configurable_options'] = [];
+                foreach ($product->getTypeInstance()->getConfigurableAttributesAsArray($product) as $attribute) {
+                    $options = [];
+                    foreach ($attribute['values'] as $value) {
+                        $options[] = [
+                            'value_index' => $value['value_index'],
+                            'label' => $value['store_label']
+                        ];
+                    }
+                    $products[$product->getId()]['configurable_options'][] = [
+                        'attribute_code' => $attribute['attribute_code'],
+                        'label' => $attribute['label'],
+                        'values' => $options
+                    ];
+                }
+            }
 
             // Ensure the product is loaded with all necessary data
-            if(!empty($loadvalues)) {
+            if (!empty($loadvalues)) {
                 foreach ($loadvalues as $loadvalue) {
                     $value = $product->getAttributeText($loadvalue);
 
-                    if(is_array($value)) {
+                    if (is_array($value)) {
                         $product->setData($loadvalue, implode(', ', $value));
+                        $products[$product->getId()][$loadvalue] = implode(', ', $value);
                     } else {
                         $product->setData($loadvalue, (string) $value);
+                        $products[$product->getId()][$loadvalue] = (string) $value;
                     }
                 }
             }
         }
 
-        $productCollection = $productCollection->toArray();
+        $this->cache->save($cacheKey, json_encode($products));
 
-        $payload = [[
-            'store_id' => $storeId,
-            'products' => $productCollection,
-            'count' => count($productCollection)
-        ]];
-
-        $this->cache->save($cacheKey, json_encode($payload));
-
-        return $payload;
+        return $products;
     }
 
     /**
@@ -147,38 +199,16 @@ class ProductsProvider implements ProductCollectionResultInterface
         return $loadvalues;
     }
 
-    /**
-     * Process product image URLs to return full URLs.
-     *
-     * @param DataObject $product
-     * @return void
-     */
-    private function processProductImageUrls(DataObject $product): void
+    private function getFormattedPrice($price): string
     {
-        $imageAttributes = ['image', 'small_image', 'thumbnail'];
-        $store = $this->storeManager->getStore();
-        $mediaUrl = $store->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
-
-        foreach ($imageAttributes as $imageType) {
-            $imageFile = $product->getData($imageType);
-
-            if ($imageFile && $imageFile !== 'no_selection') {
-                // Generate full image URL using direct media URL approach
-                $imageUrl = $mediaUrl . 'catalog/product' . $imageFile;
-                $product->setData($imageType . '_url', $imageUrl);
-
-            } else {
-                // For products without images, set a proper placeholder URL
-                $placeholderUrl = $mediaUrl . 'catalog/product/placeholder/' . $imageType . '.jpg';
-                $product->setData($imageType . '_url', $placeholderUrl);
-            }
-        }
+        return $this->pricingHelper->currency($price, true, false);
     }
 
     /**
      * Get the cache key for the product collection.
      *
      * @param int $collectionId
+     * @param int $storeId
      * @return string
      */
     public static function getCacheKey(int $collectionId, int $storeId): string
