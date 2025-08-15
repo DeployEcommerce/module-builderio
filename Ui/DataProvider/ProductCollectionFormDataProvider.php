@@ -31,6 +31,23 @@ class ProductCollectionFormDataProvider extends DataProvider
      */
     protected $collection;
 
+    /**
+     * ProductCollectionFormDataProvider constructor.
+     *
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
+     * @param Collection $collection
+     * @param Reporting $reporting
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param RequestInterface $request
+     * @param FilterBuilder $filterBuilder
+     * @param Converter $converter
+     * @param ProductCollectionRepositoryInterface $productCollectionRepository
+     * @param ProductCollectionInterfaceFactory $productCollectionInterfaceFactory
+     * @param array $meta
+     * @param array $data
+     */
     public function __construct(
         $name,
         $primaryFieldName,
@@ -60,6 +77,11 @@ class ProductCollectionFormDataProvider extends DataProvider
         );
     }
 
+    /**
+     * Retrieve data for the data provider
+     *
+     * @return array
+     */
     public function getData()
     {
         if (isset($this->loadedData)) {

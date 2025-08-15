@@ -1,9 +1,9 @@
 <?php
 /**
- * @Author:    Brandon Bishop
- * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
+ * @Copyright: 2025 Deploy Ecommerce (https://www.deploy.co.uk/)
  * @Package:   DeployEcommerce_BuilderIO
  */
+declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Api;
 
@@ -15,19 +15,27 @@ namespace DeployEcommerce\BuilderIO\Api;
 interface ProductCollectionInterface
 {
 
-    const ID = "id";
-    const TYPE = "type";
+    public const ID = "id";
+    public const TYPE = "type";
+    public const TYPE_CONDITION = "condition";
+    public const TYPE_SKU = "sku";
+    public const TYPE_CATEGORY = "category";
+    public const PRODUCT_COUNT = "product_count";
+    public const URL_KEY = "url_key";
+    public const CONFIG = "config";
 
-    const TYPE_CONDITION = "condition";
-    const TYPE_SKU = "sku";
-    const TYPE_CATEGORY = "category";
-
-    const PRODUCT_COUNT = "product_count";
-    const URL_KEY = "url_key";
-    const CONFIG = "config";
-
+    /**
+     * Get the conditions instance for this product collection.
+     *
+     * @return mixed
+     */
     public function getConditionsInstance();
 
+    /**
+     * Get the actions instance for this product collection.
+     *
+     * @return mixed
+     */
     public function getActionsInstance();
 
     /**
