@@ -1,9 +1,12 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
+
 namespace DeployEcommerce\BuilderIO\Controller\Adminhtml\Products;
 
 use Magento\Backend\App\Action;
@@ -19,6 +22,8 @@ class NewAction extends Action implements HttpGetActionInterface
     protected $resultForwardFactory;
 
     /**
+     * Constructor
+     *
      * @param Action\Context $context
      * @param ForwardFactory $resultForwardFactory
      */
@@ -31,6 +36,8 @@ class NewAction extends Action implements HttpGetActionInterface
     }
 
     /**
+     * Execute new action
+     *
      * @return Forward
      */
     public function execute(): Forward

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
@@ -31,6 +33,8 @@ class Index extends Action
     }
 
     /**
+     * Execute action to display product collections index page.
+     *
      * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
@@ -43,6 +47,8 @@ class Index extends Action
     }
 
     /**
+     * Check if user is allowed to access this controller.
+     *
      * @return bool
      */
     protected function _isAllowed()

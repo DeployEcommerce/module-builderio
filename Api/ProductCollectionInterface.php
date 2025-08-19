@@ -1,9 +1,10 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Copyright: 2025 Deploy Ecommerce (https://www.deploy.co.uk/)
  * @Package:   DeployEcommerce_BuilderIO
  */
-declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Api;
 
@@ -39,72 +40,91 @@ interface ProductCollectionInterface
     public function getActionsInstance();
 
     /**
+     * Get ID.
+     *
      * @return mixed
      */
     public function getId();
 
-
     /**
+     * Set ID.
+     *
      * @param mixed $id
      * @return ProductCollection|AbstractModel
      */
     public function setId($id);
 
-
     /**
+     * Get type.
+     *
      * @return mixed
      */
     public function getType();
 
-
     /**
+     * Set type.
+     *
      * @param string $type
      * @return ProductCollectionInterface
      */
     public function setType($type);
 
-
     /**
+     * Get config.
+     *
      * @return mixed
      */
     public function getConfig();
 
-
     /**
+     * Set config.
+     *
      * @param string $config
      * @return ProductCollectionInterface
      */
     public function setConfig($config);
 
-
     /**
+     * Get product count.
+     *
      * @return mixed
      */
     public function getProductCount();
 
-
     /**
+     * Set product count.
+     *
      * @param int $productCount
      * @return ProductCollectionInterface
      */
     public function setProductCount($productCount);
 
-
     /**
+     * Get URL key.
+     *
      * @return mixed
      */
     public function getUrlKey();
 
-
     /**
+     * Set URL key.
+     *
      * @param string $urlKey
      * @return ProductCollectionInterface
      */
     public function setUrlKey($urlKey);
 
-
+    /**
+     * Get products.
+     *
+     * @return mixed
+     */
     public function getProducts();
 
-
+    /**
+     * Get count.
+     *
+     * @return mixed
+     */
     public function getCount();
 }

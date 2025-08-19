@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Model\ResourceModel;
@@ -12,6 +11,8 @@ class ProductCollection extends AbstractDb
     private const PRIMARY_KEY = 'id';
 
     /**
+     * Initialize resource model
+     *
      * @return void
      */
     protected function _construct()

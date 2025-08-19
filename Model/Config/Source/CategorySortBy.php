@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
@@ -12,6 +14,8 @@ use Magento\Framework\Data\OptionSourceInterface;
 class CategorySortBy implements OptionSourceInterface
 {
     /**
+     * Convert to option array
+     *
      * @return array
      */
     public function toOptionArray()

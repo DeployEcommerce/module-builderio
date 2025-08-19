@@ -105,7 +105,6 @@
         <column name="config" xsi:type="text" nullable="true" comment="Configuration Data"/>
         <column name="product_count" xsi:type="int" padding="10" unsigned="true" nullable="false" default="0"
                 comment="Product Count"/>
-        <column name="url_key" xsi:type="varchar" length="255" nullable="true" comment="URL Key"/>
         <column name="is_active" xsi:type="smallint" unsigned="false" nullable="false" default="1"
                 comment="Is Active"/>
         <column name="created_at" xsi:type="timestamp" nullable="false" default="CURRENT_TIMESTAMP"
@@ -120,7 +119,7 @@
         </constraint>
     </table>
 
-    <table name="builderio_product_collection_product_index"
+    <table name="builderio_collections_product_index"
            resource="default"
            charset="utf8mb4"
            collation="utf8mb4_unicode_ci"
@@ -134,23 +133,23 @@
             <column name="index_id"/>
         </constraint>
         <constraint xsi:type="foreign"
-                    referenceId="BUILDERIO_PRD_COLLECTION_PRD_IDX_COLLECTION_ID_CATALOG_RULE_RULE_ID"
-                    table="builderio_product_collection_product_index"
+                    referenceId="BUILDERIO_COLLECTIONS_PRD_IDX_COLLECTION_ID_CATALOG_RULE_RULE_ID"
+                    table="builderio_collections_product_index"
                     column="collection_id"
                     referenceTable="builderio_collections"
                     referenceColumn="id"
                     onDelete="CASCADE"/>
         <constraint xsi:type="foreign"
-                    referenceId="BUILDERIO_PRD_COLLECTION_PRD_IDX_PRD_ID_CAT_PRD_ENTT_ENTT_ID"
-                    table="builderio_product_collection_product_index"
+                    referenceId="BUILDERIO_COLLECTIONS_PRD_IDX_PRD_ID_CAT_PRD_ENTT_ENTT_ID"
+                    table="builderio_collections_product_index"
                     column="product_id"
                     referenceTable="catalog_product_entity"
                     referenceColumn="entity_id"
                     onDelete="CASCADE"/>
-        <index referenceId="BUILDERIO_PRODUCT_COLLECTION_PRODUCT_INDEX_COLLECTION_ID" indexType="btree">
+        <index referenceId="BUILDERIO_COLLECTIONS_PRODUCT_INDEX_COLLECTION_ID" indexType="btree">
             <column name="collection_id"/>
         </index>
-        <index referenceId="BUILDERIO_PRODUCT_COLLECTION_PRODUCT_INDEX_PRODUCT_ID" indexType="btree">
+        <index referenceId="BUILDERIO_COLLECTIONS_PRODUCT_INDEX_PRODUCT_ID" indexType="btree">
             <column name="product_id"/>
         </index>
     </table>

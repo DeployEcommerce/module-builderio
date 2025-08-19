@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
+
 /*
  * @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
  * @Package:   DeployEcommerce_BuilderIO
  */
-declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Model;
 
@@ -50,9 +51,10 @@ class ContentPageRepository implements ContentPageRepositoryInterface
                 __('Could not save the webhook: %1', $exception->getMessage()),
                 $exception
             );
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
+            // Log the exception for debugging purposes
             throw new CouldNotSaveException(
-                __('Could not save the content page: %1', $exception->getMessage()),
+                __('Could not save the content page: %1', __('Something went wrong while saving the ContentPage.')),
                 $exception
             );
         }

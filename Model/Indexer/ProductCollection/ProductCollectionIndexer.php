@@ -1,6 +1,7 @@
 <?php
-
 declare(strict_types=1);
+
+
 
 namespace DeployEcommerce\BuilderIO\Model\Indexer\ProductCollection;
 
@@ -32,6 +33,8 @@ class ProductCollectionIndexer implements IndexerActionInterface, MviewActionInt
     }
 
     /**
+     * Execute indexing for given IDs.
+     *
      * @param int[] $ids
      * @return void
      * @throws LocalizedException
@@ -42,6 +45,8 @@ class ProductCollectionIndexer implements IndexerActionInterface, MviewActionInt
     }
 
     /**
+     * Execute full indexing.
+     *
      * @return void
      * @throws LocalizedException
      */
@@ -51,6 +56,8 @@ class ProductCollectionIndexer implements IndexerActionInterface, MviewActionInt
     }
 
     /**
+     * Execute indexing for list of IDs.
+     *
      * @param int[] $ids
      * @return void
      * @throws LocalizedException
@@ -61,6 +68,8 @@ class ProductCollectionIndexer implements IndexerActionInterface, MviewActionInt
     }
 
     /**
+     * Execute indexing for single row.
+     *
      * @param int $id
      * @return void
      * @throws LocalizedException

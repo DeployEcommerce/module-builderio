@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection;
@@ -7,7 +6,8 @@ namespace DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection;
 use DeployEcommerce\BuilderIO\Model\ProductCollection;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection as ProductCollectionResource;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Collection as ProductCollectionCollection;
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory as ProductCollectionCollectionFactory;
+use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory
+    as ProductCollectionCollectionFactory;
 use Magento\Framework\App\ResourceConnection;
 
 class ProductIndexer
@@ -43,6 +43,8 @@ class ProductIndexer
     }
 
     /**
+     * Reindex all product collections.
+     *
      * @return void
      */
     public function reindexAll(): void
@@ -52,6 +54,8 @@ class ProductIndexer
     }
 
     /**
+     * Reindex a single product collection by ID.
+     *
      * @param int $id
      * @return void
      */
@@ -61,6 +65,8 @@ class ProductIndexer
     }
 
     /**
+     * Reindex multiple product collections by IDs.
+     *
      * @param array $ids
      * @return void
      */
@@ -71,7 +77,7 @@ class ProductIndexer
         }
 
         $connection = $this->resourceConnection->getConnection();
-        $tableName = $this->resourceConnection->getTableName('builderio_product_collection_product_index');
+        $tableName = $this->resourceConnection->getTableName('builderio_collections_product_index');
 
         $connection->delete($tableName, ['collection_id IN (?)' => $ids]);
 

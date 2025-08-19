@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
-declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Block\Adminhtml\ProductCollection\Edit\Tab;
 
@@ -41,8 +42,11 @@ class Conditions extends Generic implements TabInterface
     protected $productCollectionFactory;
 
     /**
+     * Constructor.
+     *
      * @param Context $context
      * @param Registry $registry
+     * @param Converter $converter
      * @param FormFactory $formFactory
      * @param RuleConditions $conditions
      * @param Fieldset $rendererFieldset
@@ -66,6 +70,9 @@ class Conditions extends Generic implements TabInterface
     }
 
     /**
+     * Get tab title.
+     *
+     * @return \Magento\Framework\Phrase
      * @throws LocalizedException
      */
     public function getTabTitle()
@@ -74,6 +81,8 @@ class Conditions extends Generic implements TabInterface
     }
 
     /**
+     * Can show tab.
+     *
      * @return bool
      */
     public function canShowTab()
@@ -82,6 +91,8 @@ class Conditions extends Generic implements TabInterface
     }
 
     /**
+     * Is hidden.
+     *
      * @return bool
      */
     public function isHidden()
@@ -90,6 +101,8 @@ class Conditions extends Generic implements TabInterface
     }
 
     /**
+     * To HTML.
+     *
      * @return string
      * @throws LocalizedException
      */
@@ -99,6 +112,8 @@ class Conditions extends Generic implements TabInterface
     }
 
     /**
+     * Prepare form.
+     *
      * @return Generic
      * @throws LocalizedException
      */
@@ -116,7 +131,9 @@ class Conditions extends Generic implements TabInterface
     }
 
     /**
-     * @param $model
+     * Add tab to form.
+     *
+     * @param mixed $model
      * @param string $fieldsetId
      * @param string $formName
      * @return Form
@@ -165,8 +182,10 @@ class Conditions extends Generic implements TabInterface
     }
 
     /**
-     * @param $conditions
-     * @param $formName
+     * Set condition form name.
+     *
+     * @param mixed $conditions
+     * @param string $formName
      * @return void
      */
     protected function setConditionFormName($conditions, $formName)
@@ -174,19 +193,43 @@ class Conditions extends Generic implements TabInterface
         $conditions->setJsFormObject($formName);
     }
 
+    /**
+     * Get tab label.
+     *
+     * @return string|null
+     */
     public function getTabLabel()
     {
+        return null;
     }
 
+    /**
+     * Get tab class.
+     *
+     * @return string|null
+     */
     public function getTabClass()
     {
+        return null;
     }
 
+    /**
+     * Get tab URL.
+     *
+     * @return string|null
+     */
     public function getTabUrl()
     {
+        return null;
     }
 
+    /**
+     * Is AJAX loaded.
+     *
+     * @return bool
+     */
     public function isAjaxLoaded()
     {
+        return false;
     }
 }

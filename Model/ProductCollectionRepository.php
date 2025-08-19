@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
@@ -12,7 +14,8 @@ use DeployEcommerce\BuilderIO\Api\Data\ProductCollectionSearchResultsInterfaceFa
 use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
 use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection as ProductCollectionResourceModel;
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory as ProductCollectionCollectionFactory;
+use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory
+    as ProductCollectionCollectionFactory;
 use Exception;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
@@ -24,6 +27,16 @@ use Magento\Framework\Model\ResourceModel\Db\Context;
 
 class ProductCollectionRepository extends AbstractDb implements ProductCollectionRepositoryInterface
 {
+    /**
+     * Constructor for ProductCollectionRepository.
+     *
+     * @param ProductCollectionResourceModel $resource
+     * @param ProductCollectionFactory $productCollectionFactory
+     * @param ProductCollectionCollectionFactory $collectionFactory
+     * @param CollectionProcessorInterface $collectionProcessor
+     * @param Context $context
+     * @param string|null $connectionName
+     */
     public function __construct(
         private ProductCollectionResourceModel $resource,
         private ProductCollectionFactory $productCollectionFactory,
@@ -77,6 +90,13 @@ class ProductCollectionRepository extends AbstractDb implements ProductCollectio
         return $searchResults;
     }
 
+    /**
+     * Delete a product collection.
+     *
+     * @param ProductCollectionInterface $productCollection
+     * @return bool
+     * @throws CouldNotDeleteException
+     */
     public function delete($productCollection)
     {
         try {
@@ -95,7 +115,13 @@ class ProductCollectionRepository extends AbstractDb implements ProductCollectio
         return $this->delete($this->getById($id));
     }
 
+    /**
+     * Resource initialization.
+     *
+     * @return void
+     */
     protected function _construct()
     {
+        // No initialization needed for this repository
     }
 }

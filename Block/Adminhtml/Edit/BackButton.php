@@ -1,9 +1,12 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
+
 namespace DeployEcommerce\BuilderIO\Block\Adminhtml\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
@@ -11,6 +14,8 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 class BackButton extends GenericButton implements ButtonProviderInterface
 {
     /**
+     * Get back button data.
+     *
      * @return array
      */
     public function getButtonData()
@@ -24,6 +29,8 @@ class BackButton extends GenericButton implements ButtonProviderInterface
     }
 
     /**
+     * Get back URL.
+     *
      * @return string
      */
     public function getBackUrl()

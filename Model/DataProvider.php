@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
@@ -62,6 +64,8 @@ class DataProvider extends AbstractDataProvider
     }
 
     /**
+     * Get form data for UI component.
+     *
      * @return array
      */
     public function getData()
@@ -92,7 +96,9 @@ class DataProvider extends AbstractDataProvider
     }
 
     /**
-     * @param $model
+     * Convert model data to array format for forms.
+     *
+     * @param \DeployEcommerce\BuilderIO\Model\ProductCollection $model
      * @return array
      */
     private function convertValues($model)

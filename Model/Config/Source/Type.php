@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Model\Config\Source;
 
@@ -8,6 +9,8 @@ use Magento\Framework\Data\OptionSourceInterface;
 class Type implements OptionSourceInterface
 {
     /**
+     * Convert to option array
+     *
      * @return array
      */
     public function toOptionArray()
