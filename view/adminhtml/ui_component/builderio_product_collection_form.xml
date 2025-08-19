@@ -196,28 +196,6 @@
         <block class="DeployEcommerce\BuilderIO\Block\Adminhtml\ProductCollection\Edit\Tab\Conditions" name="builderio_productcollection_edit_tab_conditions"/>
     </htmlContent>
 
-    <fieldset name="collection_details">
-        <settings>
-            <label>Collection Details</label>
-            <collapsible>true</collapsible>
-            <opened>true</opened>
-        </settings>
-        <field name="product_count" formElement="input">
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Product Count</label>
-                <disabled>true</disabled>
-            </settings>
-        </field>
-        <field name="url_key" formElement="input">
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Collection URL</label>
-                <disabled>true</disabled>
-                <notice>The URL is automatically generated after saving.</notice>
-            </settings>
-        </field>
-    </fieldset>
     <field name="form_glue" formElement="input" component="DeployEcommerce_BuilderIO/js/form/element/form-glue">
         <settings>
             <dataType>text</dataType>
