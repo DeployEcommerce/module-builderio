@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
-declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Ui\DataProvider;
 
@@ -16,6 +17,19 @@ use Magento\Framework\View\Element\UiComponent\DataProvider\Reporting;
 
 class ProductCollectionDataProvider extends DataProvider
 {
+    /**
+     * Constructor.
+     *
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
+     * @param Reporting $reporting
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param RequestInterface $request
+     * @param FilterBuilder $filterBuilder
+     * @param array $meta
+     * @param array $data
+     */
     public function __construct(
         $name,
         $primaryFieldName,
@@ -39,6 +53,11 @@ class ProductCollectionDataProvider extends DataProvider
             $data
         );
     }
+    /**
+     * Get search result.
+     *
+     * @return \Magento\Framework\Api\Search\SearchResultInterface
+     */
     public function getSearchResult()
     {
         $searchResult = parent::getSearchResult();

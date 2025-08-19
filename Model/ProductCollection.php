@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Model;
@@ -33,47 +32,123 @@ use Magento\Store\Model\StoreManagerInterface;
 
 class ProductCollection extends Rule implements ProductCollectionInterface
 {
-    const CACHE_TAG = 'buildeio_product_collection';
+    /**
+     * Cache tag for product collection
+     */
+    public const CACHE_TAG = 'buildeio_product_collection';
 
+    /**
+     * Event prefix for product collection
+     *
+     * @var string
+     */
     protected $_eventPrefix = 'builderio_product_collection';
 
+    /**
+     * Event object identifier
+     *
+     * @var string
+     */
     protected $_eventObject = 'rule';
 
-
+    /**
+     * Number of products in the collection
+     *
+     * @var int
+     */
     protected int $productCount;
 
+    /**
+     * Constructor
+     *
+     * @param Context $context
+     * @param Registry $registry
+     * @param FormFactory $formFactory
+     * @param TimezoneInterface $localeDate
+     * @param CollectionFactory $productCollectionFactory
+     * @param CategoryRepositoryInterface $categoryRepository
+     * @param StoreManagerInterface $storeManager
+     * @param CombineFactory $combineFactory
+     * @param RuleCollectionFactory $actionCollectionFactory
+     * @param ProductFactory $productFactory
+     * @param Iterator $resourceIterator
+     * @param Session $customerSession
+     * @param Data $catalogRuleData
+     * @param TypeListInterface $cacheTypesList
+     * @param DateTime $dateTime
+     * @param RuleProductProcessor $ruleProductProcessor
+     * @param ProductRepositoryInterface $productRepository
+     * @param ConditionsToCollectionApplier $conditionsToCollectionApplier
+     * @param AbstractResource|null $resource
+     * @param AbstractDb|null $resourceCollection
+     * @param array $relatedCacheTypes
+     * @param array $data
+     * @param ExtensionAttributesFactory|null $extensionFactory
+     * @param AttributeValueFactory|null $customAttributeFactory
+     * @param Json|null $serializer
+     * @param RuleResourceModel|null $ruleResourceModel
+     */
     public function __construct(
-        Context                                                        $context,
-        Registry                                                       $registry,
-        FormFactory                                                    $formFactory,
-        TimezoneInterface                                              $localeDate,
+        Context $context,
+        Registry $registry,
+        FormFactory $formFactory,
+        TimezoneInterface $localeDate,
         private CollectionFactory $productCollectionFactory,
-        private CategoryRepositoryInterface                                    $categoryRepository,
-        StoreManagerInterface                                          $storeManager,
-        CombineFactory                                                 $combineFactory,
-        RuleCollectionFactory                                          $actionCollectionFactory,
-        ProductFactory                                                 $productFactory,
-        Iterator                                                       $resourceIterator,
-        Session                                                        $customerSession,
-        Data                                                           $catalogRuleData,
-        TypeListInterface                                              $cacheTypesList,
-        DateTime                                                       $dateTime,
-        RuleProductProcessor                                           $ruleProductProcessor,
-        private ProductRepositoryInterface                             $productRepository,
-        ConditionsToCollectionApplier                          $conditionsToCollectionApplier,
-        AbstractResource                                               $resource = null,
-        AbstractDb                                                     $resourceCollection = null,
-        array                                                          $relatedCacheTypes = [],
-        array                                                          $data = [],
-        ExtensionAttributesFactory                                     $extensionFactory = null,
-        AttributeValueFactory                                          $customAttributeFactory = null,
-        Json                                                           $serializer = null,
-        RuleResourceModel                                              $ruleResourceModel = null,
+        private CategoryRepositoryInterface $categoryRepository,
+        StoreManagerInterface $storeManager,
+        CombineFactory $combineFactory,
+        RuleCollectionFactory $actionCollectionFactory,
+        ProductFactory $productFactory,
+        Iterator $resourceIterator,
+        Session $customerSession,
+        Data $catalogRuleData,
+        TypeListInterface $cacheTypesList,
+        DateTime $dateTime,
+        RuleProductProcessor $ruleProductProcessor,
+        private ProductRepositoryInterface $productRepository,
+        ConditionsToCollectionApplier $conditionsToCollectionApplier,
+        AbstractResource $resource = null,
+        AbstractDb $resourceCollection = null,
+        array $relatedCacheTypes = [],
+        array $data = [],
+        ExtensionAttributesFactory $extensionFactory = null,
+        AttributeValueFactory $customAttributeFactory = null,
+        Json $serializer = null,
+        RuleResourceModel $ruleResourceModel = null,
     ) {
-        parent::__construct($context, $registry, $formFactory, $localeDate, $productCollectionFactory, $storeManager, $combineFactory, $actionCollectionFactory, $productFactory, $resourceIterator, $customerSession, $catalogRuleData, $cacheTypesList, $dateTime, $ruleProductProcessor, $resource, $resourceCollection, $relatedCacheTypes, $data, $extensionFactory, $customAttributeFactory, $serializer, $ruleResourceModel, $conditionsToCollectionApplier);
+        parent::__construct(
+            $context,
+            $registry,
+            $formFactory,
+            $localeDate,
+            $productCollectionFactory,
+            $storeManager,
+            $combineFactory,
+            $actionCollectionFactory,
+            $productFactory,
+            $resourceIterator,
+            $customerSession,
+            $catalogRuleData,
+            $cacheTypesList,
+            $dateTime,
+            $ruleProductProcessor,
+            $resource,
+            $resourceCollection,
+            $relatedCacheTypes,
+            $data,
+            $extensionFactory,
+            $customAttributeFactory,
+            $serializer,
+            $ruleResourceModel,
+            $conditionsToCollectionApplier
+        );
     }
 
-
+    /**
+     * After load operations
+     *
+     * @return $this
+     */
     public function afterLoad()
     {
         parent::afterLoad();
@@ -84,6 +159,11 @@ class ProductCollection extends Rule implements ProductCollectionInterface
         return $this;
     }
 
+    /**
+     * Before save operations
+     *
+     * @return ProductCollection
+     */
     public function beforeSave()
     {
         if (is_array($this->getConfig())) {
@@ -92,19 +172,29 @@ class ProductCollection extends Rule implements ProductCollectionInterface
         return parent::beforeSave();
     }
 
-
+    /**
+     * Get conditions instance
+     *
+     * @return \Magento\CatalogRule\Model\Rule\Condition\Combine
+     */
     public function getConditionsInstance()
     {
         return $this->_combineFactory->create();
     }
 
+    /**
+     * Get actions instance
+     *
+     * @return \Magento\CatalogRule\Model\Rule\Action\Collection
+     */
     public function getActionsInstance()
     {
         return $this->_actionCollectionFactory->create();
     }
 
-
     /**
+     * Get ID
+     *
      * @return mixed
      */
     public function getId()
@@ -113,6 +203,8 @@ class ProductCollection extends Rule implements ProductCollectionInterface
     }
 
     /**
+     * Set ID
+     *
      * @param mixed $id
      * @return ProductCollection|\Magento\Framework\Model\AbstractModel
      */
@@ -122,6 +214,8 @@ class ProductCollection extends Rule implements ProductCollectionInterface
     }
 
     /**
+     * Get type
+     *
      * @return mixed
      */
     public function getType()
@@ -130,6 +224,8 @@ class ProductCollection extends Rule implements ProductCollectionInterface
     }
 
     /**
+     * Set type
+     *
      * @param string $type
      * @return ProductCollectionInterface
      */
@@ -139,6 +235,8 @@ class ProductCollection extends Rule implements ProductCollectionInterface
     }
 
     /**
+     * Get config
+     *
      * @return mixed
      */
     public function getConfig()
@@ -147,6 +245,8 @@ class ProductCollection extends Rule implements ProductCollectionInterface
     }
 
     /**
+     * Set config
+     *
      * @param string $config
      * @return ProductCollectionInterface
      */
@@ -156,6 +256,8 @@ class ProductCollection extends Rule implements ProductCollectionInterface
     }
 
     /**
+     * Get product count
+     *
      * @return mixed
      */
     public function getProductCount()
@@ -164,6 +266,8 @@ class ProductCollection extends Rule implements ProductCollectionInterface
     }
 
     /**
+     * Set product count
+     *
      * @param int $productCount
      * @return ProductCollectionInterface
      */
@@ -173,6 +277,8 @@ class ProductCollection extends Rule implements ProductCollectionInterface
     }
 
     /**
+     * Get URL key
+     *
      * @return mixed
      */
     public function getUrlKey()
@@ -181,6 +287,8 @@ class ProductCollection extends Rule implements ProductCollectionInterface
     }
 
     /**
+     * Set URL key
+     *
      * @param string $urlKey
      * @return ProductCollectionInterface
      */
@@ -189,6 +297,11 @@ class ProductCollection extends Rule implements ProductCollectionInterface
         return $this->setData(self::URL_KEY, $urlKey);
     }
 
+    /**
+     * Get products based on collection type
+     *
+     * @return array
+     */
     public function getProducts()
     {
         // This will join all attributes used in the conditions.
@@ -204,12 +317,22 @@ class ProductCollection extends Rule implements ProductCollectionInterface
         return $matchingProducts;
     }
 
+    /**
+     * Get count of products
+     *
+     * @return int
+     */
     public function getCount()
     {
         return $this->productCount;
     }
 
-    private function getConditionProducts():array
+    /**
+     * Get products matching conditions
+     *
+     * @return array
+     */
+    private function getConditionProducts(): array
     {
 
         $productCollection = $this->productCollectionFactory->create();
@@ -226,6 +349,11 @@ class ProductCollection extends Rule implements ProductCollectionInterface
         return $matchingProducts;
     }
 
+    /**
+     * Get products by SKU list
+     *
+     * @return array
+     */
     private function getSkuProducts(): array
     {
         $sku_list = explode(",", $this->getData("config/sku_list"));
@@ -236,10 +364,14 @@ class ProductCollection extends Rule implements ProductCollectionInterface
             $matchingProducts[] = $this->productRepository->get($sku);
         }
 
-
         return $matchingProducts;
     }
 
+    /**
+     * Get products from category
+     *
+     * @return array
+     */
     private function getCategoryProducts(): array
     {
         /** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection */

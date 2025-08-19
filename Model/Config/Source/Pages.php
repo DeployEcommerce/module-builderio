@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
@@ -18,6 +20,12 @@ use Magento\Framework\Data\OptionSourceInterface;
  */
 class Pages implements OptionSourceInterface
 {
+    /**
+     * Constructor
+     *
+     * @param ContentPageRepository $contentPageRepository
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     */
     public function __construct(
         private ContentPageRepository $contentPageRepository,
         private SearchCriteriaBuilder $searchCriteriaBuilder

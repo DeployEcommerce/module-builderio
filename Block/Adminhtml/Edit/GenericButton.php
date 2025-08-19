@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
@@ -36,6 +38,8 @@ class GenericButton
     }
 
     /**
+     * Get the current product collection ID.
+     *
      * @return int|null
      */
     public function getId()
@@ -45,11 +49,14 @@ class GenericButton
                 $this->context->getRequest()->getParam('id')
             )->getId();
         } catch (NoSuchEntityException $e) {
+            // Product collection not found, return null
+            return null;
         }
-        return null;
     }
 
     /**
+     * Generate URL for given route and parameters.
+     *
      * @param string $route
      * @param array $params
      * @return string

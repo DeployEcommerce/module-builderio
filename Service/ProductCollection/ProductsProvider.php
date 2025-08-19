@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
-declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Service\ProductCollection;
 
@@ -27,7 +28,7 @@ use Magento\Store\Model\App\Emulation;
 
 class ProductsProvider implements ProductCollectionResultInterface
 {
-    const CACHE_KEY = "product_collection_webapi_";
+    private const CACHE_KEY = "product_collection_webapi_";
 
     /**
      * ProductsProvider constructor.
@@ -41,6 +42,8 @@ class ProductsProvider implements ProductCollectionResultInterface
      * @param StoreManagerInterface $storeManager
      * @param PricingHelper $pricingHelper
      * @param TaxHelper $taxHelper
+     * @param ImageBuilder $imageBuilder
+     * @param Emulation $emulation
      */
     public function __construct(
         private ResourceConnection $resourceConnection,
@@ -78,7 +81,7 @@ class ProductsProvider implements ProductCollectionResultInterface
         }
 
         $connection = $this->resourceConnection->getConnection();
-        $tableName = $this->resourceConnection->getTableName('builderio_product_collection_product_index');
+        $tableName = $this->resourceConnection->getTableName('builderio_collections_product_index');
 
         $select = $connection
             ->select()
@@ -183,6 +186,7 @@ class ProductsProvider implements ProductCollectionResultInterface
 
     /**
      * Get attributes that need to be loaded with values.
+     *
      * This method checks the product attributes configured in the catalog
      *
      * @return array
@@ -199,6 +203,12 @@ class ProductsProvider implements ProductCollectionResultInterface
         return $loadvalues;
     }
 
+    /**
+     * Get formatted price using currency helper.
+     *
+     * @param float $price
+     * @return string
+     */
     private function getFormattedPrice($price): string
     {
         return $this->pricingHelper->currency($price, true, false);

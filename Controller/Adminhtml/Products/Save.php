@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
-declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Controller\Adminhtml\Products;
 
@@ -24,6 +25,8 @@ use Throwable;
 class Save extends Action
 {
     /**
+     * Constructor
+     *
      * @param Context $context
      * @param DataPersistorInterface $dataPersistor
      * @param ProductCollectionRepositoryInterface $productCollectionRepository
@@ -43,6 +46,8 @@ class Save extends Action
     }
 
     /**
+     * Execute save action
+     *
      * @return Redirect
      * @throws NoSuchEntityException
      */
@@ -75,15 +80,9 @@ class Save extends Action
             }
 
             unset($data['condtions']);
+
             $model = $model->setData($data);
             $this->productCollectionRepository->save($model);
-
-            //calling get products unset conditions serialized. So we copy the model to preserve the data
-            $newModel = $this->productCollectionRepository->getById($model->getId());
-
-            $model->setProductCount(count($newModel->getProducts()));
-
-            $model->setUrlKey($this->urlBuilder->getBaseUrl(). "rest/all/V1/builderio/collections/". $model->getId());
 
             try {
                 $this->productCollectionRepository->save($model);

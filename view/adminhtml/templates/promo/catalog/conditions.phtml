@@ -19,7 +19,7 @@
                 <button
                     type="button"
                     class="action-add"
-                    id="<?= $block->getNewChildUrl() ?>"
+                    id="<?= $escaper->escapeHtmlAttr($block->getNewChildUrl()) ?>"
                     title="<?= $escaper->escapeHtmlAttr(__('Add')) ?>">
                     <span><?= $escaper->escapeHtml(__('Add')) ?></span>
                 </button>
@@ -31,7 +31,9 @@
     </div>
 </div>
 
-<input type="hidden" name="<?= $escaper->escapeHtmlAttr($block->getName()) ?>" value="<?= $escaper->escapeHtmlAttr($block->getConditions()->asArray(true)) ?>" data-form-part="<?= $escaper->escapeHtmlAttr($block->getFormName()) ?>"/>
+<input type="hidden" name="<?= $escaper->escapeHtmlAttr($block->getName()) ?>"
+      value="<?= $escaper->escapeHtmlAttr($block->getConditions()->asArray(true)) ?>"
+      data-form-part="<?= $escaper->escapeHtmlAttr($block->getFormName()) ?>"/>
 
 <script>
 require([
@@ -41,12 +43,12 @@ require([
 ], function(jQuery, confirmation){
 
 //<![CDATA[
-var <?= $block->getJsFormObject() ?> = new VarienForm('<?= $block->getFormName() ?>');
+var <?= $escaper->escapeJs($block->getJsFormObject()) ?> = new VarienForm('<?= $escaper->escapeJs($block->getFormName()) ?>');
 var rule_conditions_fieldset = {
-    id: '<?= $block->getHtmlId() ?>',
+    id: '<?= $escaper->escapeJs($block->getHtmlId()) ?>',
     newChildUrl: '<?= $escaper->escapeUrl($block->getNewChildUrl()) ?>',
     removeUrl: '<?= $escaper->escapeUrl($block->getRemoveUrl()) ?>',
-    form: <?= $block->getJsFormObject() ?>,
+    form: <?= $escaper->escapeJs($block->getJsFormObject()) ?>,
     canShow: 1,
     childCount: 0,
     show: function () {

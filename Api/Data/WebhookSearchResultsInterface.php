@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
@@ -7,6 +9,7 @@
 
 namespace DeployEcommerce\BuilderIO\Api\Data;
 
+use Magento\Framework\Api\ExtensibleDataInterface;
 use Magento\Framework\Api\SearchResultsInterface;
 
 /**
@@ -19,16 +22,16 @@ use Magento\Framework\Api\SearchResultsInterface;
 interface WebhookSearchResultsInterface extends SearchResultsInterface
 {
     /**
-     * Get pages list.
+     * Get items list.
      *
-     * @return WebhookInterface[]
+     * @return ExtensibleDataInterface[]
      */
     public function getItems();
 
     /**
-     * Set pages list.
+     * Set items list.
      *
-     * @param WebhookInterface[] $items
+     * @param \Magento\Framework\Api\ExtensibleDataInterface[] $items
      * @return $this
      */
     public function setItems(array $items);

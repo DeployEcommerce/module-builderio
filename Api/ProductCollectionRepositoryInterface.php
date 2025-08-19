@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Copyright: 2025 Deploy Ecommerce (https://www.deploy.co.uk/)
  * @Package:   DeployEcommerce_BuilderIO
@@ -23,8 +25,10 @@ interface ProductCollectionRepositoryInterface
     public function getById($id): ProductCollectionInterface;
 
     /**
-     * @param $productCollection
-     * @return
+     * Save product collection.
+     *
+     * @param mixed $productCollection
+     * @return mixed
      */
     public function save($productCollection);
 

@@ -1,9 +1,12 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
  * @Package:   DeployEcommerce_BuilderIO
  */
+
 namespace DeployEcommerce\BuilderIO\Controller\Adminhtml\Products;
 
 use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
@@ -24,8 +27,14 @@ class Edit extends Action
     protected $resultPageFactory;
 
     /**
+     * Constructor for Edit action.
+     *
      * @param Context $context
      * @param PageFactory $resultPageFactory
+     * @param ProductCollectionRepositoryInterface $productCollectionRepository
+     * @param ProductCollectionInterfaceFactory $productCollectionInterfaceFactory
+     * @param Registry $registry
+     * @param ForwardFactory $forwardFactory
      */
     public function __construct(
         Context $context,
@@ -40,6 +49,8 @@ class Edit extends Action
     }
 
     /**
+     * Execute edit action for product collection.
+     *
      * @return Page
      */
     public function execute(): Page

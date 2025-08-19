@@ -105,11 +105,12 @@
                 </item>
             </argument>
         </column>
-        <column name="url_key">
+        <column name="collection_url" class="DeployEcommerce\BuilderIO\Ui\Component\Listing\Column\CollectionUrl">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Collection URL</item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
                 </item>
             </argument>
         </column>

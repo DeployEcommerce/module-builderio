@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
@@ -20,6 +22,8 @@ class Delete extends Action
     protected $productCollectionRepository;
 
     /**
+     * Constructor
+     *
      * @param \Magento\Backend\App\Action\Context $context
      * @param \DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface $productCollectionRepository
      */
@@ -32,6 +36,8 @@ class Delete extends Action
     }
 
     /**
+     * Execute delete action
+     *
      * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
@@ -53,6 +59,8 @@ class Delete extends Action
     }
 
     /**
+     * Check if user is allowed to perform this action
+     *
      * @return bool
      */
     protected function _isAllowed()
