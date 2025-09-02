@@ -139,7 +139,7 @@ class Conditions extends Generic implements TabInterface
      * @return Form
      * @throws LocalizedException
      */
-    protected function addTabToForm($model, $fieldsetId = 'conditions_apply_to', $formName = 'builderio_products_form')
+    protected function addTabToForm($model, $fieldsetId = 'conditions_fieldset', $formName = 'builderio_products_form')
     {
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create();

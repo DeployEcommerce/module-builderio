@@ -106,7 +106,7 @@ define([
             registry.get(providerName, function (provider) {
                 provider.save = provider.save.wrap(function (originalSave) {
                     var data = this.get('data');
-                    var conditionsData = $('#rule_conditions_apply_to').serializeArray();
+                    var conditionsData = $('#rule_conditions_fieldset').serializeArray();
 
                     // Parse the flat form data into a structured object
                     var parsedData = parseConditions(conditionsData);

@@ -179,7 +179,7 @@
         </field>
     </fieldset>
 
-    <htmlContent name="conditions_apply_to">
+    <htmlContent name="conditions_fieldset">
         <argument name="data" xsi:type="array">
             <item name="wrapper" xsi:type="array">
                 <item name="label" xsi:type="string" translate="true">Conditions</item>
