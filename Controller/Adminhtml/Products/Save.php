@@ -97,12 +97,9 @@ class Save extends Action
             $this->messageManager->addSuccessMessage(__('You saved the product collection.'));
             $this->dataPersistor->clear('builderio_product_collection');
 
-            if ($this->getRequest()->getParam('back')) {
-                return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId()]);
-            }
+            
 
-            $this->dataPersistor->set('builderio_product_collection', $data);
-            return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
+            return $resultRedirect->setPath('*/*/');
         }
         return $resultRedirect->setPath('*/*/');
     }
