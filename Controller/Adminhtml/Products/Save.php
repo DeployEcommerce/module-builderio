@@ -82,7 +82,13 @@ class Save extends Action
             unset($data['condtions']);
 
             $model = $model->setData($data);
+
             $this->productCollectionRepository->save($model);
+
+            //calling get products unset conditions serialized. So we copy the model to preserve the data
+            $newModel = $this->productCollectionRepository->getById($model->getId());
+
+            $model->setProductCount(count($newModel->getProducts()));
 
             try {
                 $this->productCollectionRepository->save($model);
