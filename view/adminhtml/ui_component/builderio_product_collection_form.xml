@@ -80,6 +80,93 @@
             </settings>
         </field>
         <field name="type" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="switcherConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">true</item>
+                        <item name="rules" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">category</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">builderio_product_collection_form.builderio_product_collection_form.category_fieldset</item>
+                                        <item name="callback" xsi:type="string">visible</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="boolean">true</item>
+                                        </item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">builderio_product_collection_form.builderio_product_collection_form.sku_fieldset</item>
+                                        <item name="callback" xsi:type="string">visible</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="boolean">false</item>
+                                        </item>
+                                    </item>
+                                    <item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">builderio_product_collection_form.builderio_product_collection_form.conditions_fieldset</item>
+                                        <item name="callback" xsi:type="string">visible</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="boolean">false</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">sku</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">builderio_product_collection_form.builderio_product_collection_form.category_fieldset</item>
+                                        <item name="callback" xsi:type="string">visible</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="boolean">false</item>
+                                        </item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">builderio_product_collection_form.builderio_product_collection_form.sku_fieldset</item>
+                                        <item name="callback" xsi:type="string">visible</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="boolean">true</item>
+                                        </item>
+                                    </item>
+                                    <item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">builderio_product_collection_form.builderio_product_collection_form.conditions_fieldset</item>
+                                        <item name="callback" xsi:type="string">visible</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="boolean">false</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">condition</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">builderio_product_collection_form.builderio_product_collection_form.category_fieldset</item>
+                                        <item name="callback" xsi:type="string">visible</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="boolean">false</item>
+                                        </item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">builderio_product_collection_form.builderio_product_collection_form.sku_fieldset</item>
+                                        <item name="callback" xsi:type="string">visible</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="boolean">false</item>
+                                        </item>
+                                    </item>
+                                    <item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">builderio_product_collection_form.builderio_product_collection_form.conditions_fieldset</item>
+                                        <item name="callback" xsi:type="string">visible</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="boolean">true</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Collection Type</label>
@@ -114,10 +201,7 @@
             <label>Category Configuration</label>
             <collapsible>true</collapsible>
             <opened>true</opened>
-            <visible>true</visible>
-            <imports>
-                <link name="visible">${$.provider}:data.type === 'category'</link>
-            </imports>
+            <visible>false</visible>
         </settings>
         <field name="category_id" formElement="select">
             <settings>
@@ -164,10 +248,7 @@
             <label>SKU Configuration</label>
             <collapsible>true</collapsible>
             <opened>true</opened>
-            <visible>true</visible>
-            <imports>
-                <link name="visible">${$.provider}:data.type === 'sku'</link>
-            </imports>
+            <visible>false</visible>
         </settings>
         <field name="sku_list" formElement="textarea">
             <settings>
@@ -192,6 +273,7 @@
                 <canShow>true</canShow>
                 <componentType>fieldset</componentType>
             </wrapper>
+            <visible>false</visible>
         </settings>
         <block class="DeployEcommerce\BuilderIO\Block\Adminhtml\ProductCollection\Edit\Tab\Conditions" name="builderio_productcollection_edit_tab_conditions"/>
     </htmlContent>
@@ -203,3 +285,4 @@
         </settings>
     </field>
 </form>
+
