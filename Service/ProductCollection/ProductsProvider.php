@@ -98,23 +98,18 @@ class ProductsProvider implements ProductCollectionResultInterface
 
         $productCollection->addFieldToFilter('entity_id', [ "in" => $productIds])
             ->addAttributeToSelect($this->catalogConfig->getProductAttributes())
-            ->addMinimalPrice()
-            ->addFinalPrice()
             ->addTaxPercents()
             ->addUrlRewrite()
             ->addPriceData()
-            ->addAttributeToFilter('visibility', ([
-                Visibility::VISIBILITY_IN_CATALOG,
-                Visibility::VISIBILITY_BOTH
-            ]));
+        ;
 
         $loadvalues = $this->getAttributesToLoadValues();
         $products = [];
 
         $this->emulation->startEnvironmentEmulation($storeId, Area::AREA_FRONTEND, true);
-
+        $items = $productCollection->getItems();
         // Process image URLs for each product
-        foreach ($productCollection->getItems() as $product) {
+        foreach ($items as $product) {
 
             $products[$product->getId()] = [
                 'name' => $product->getName(),
