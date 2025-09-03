@@ -101,7 +101,10 @@ class ProductsProvider implements ProductCollectionResultInterface
             ->addTaxPercents()
             ->addUrlRewrite()
             ->addPriceData()
-        ;
+            ->addAttributeToFilter('visibility', ([
+                Visibility::VISIBILITY_IN_CATALOG,
+                Visibility::VISIBILITY_BOTH
+            ]));
 
         $loadvalues = $this->getAttributesToLoadValues();
         $products = [];
