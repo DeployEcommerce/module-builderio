@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!--
+  ~ @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
+  ~ @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
+  ~ @Package:   DeployEcommerce_BuilderIO
+  -->
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">webhook_listing.webhook_listing_data_source</item>
+            <item name="deps" xsi:type="string">webhook_listing.webhook_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>webhook_listing_columns</spinner>
+        <deps>
+            <dep>webhook_listing.webhook_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="webhook_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">webhook_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>DeployEcommerce_BuilderIO::management</aclResource>
+        <dataProvider class="DeployEcommerce\BuilderIO\Ui\DataProvider\WebhookDataProvider"
+                      name="webhook_listing_data_source">
+            <settings>
+                <requestFieldName>webhook_id</requestFieldName>
+                <primaryFieldName>webhook_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="webhook_listing_columns">
+        <column name="webhook_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="operation">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Operation</label>
+            </settings>
+        </column>
+        <column name="model_name">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Model Name</label>
+            </settings>
+        </column>
+        <column name="name">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+        <column name="last_updated">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Last Updated</label>
+            </settings>
+        </column>
+        <column name="preview_url">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Preview Url</label>
+            </settings>
+        </column>
+        <column name="screenshot"
+                class="DeployEcommerce\BuilderIO\Ui\Component\Listing\Column\Screenshot"
+                component="Magento_Ui/js/grid/columns/thumbnail"
+        >
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Screenshot</label>
+            </settings>
+        </column>
+        <column name="first_published">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">First Published</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions"
+                       class="DeployEcommerce\BuilderIO\Ui\Component\Listing\Column\WebhookBlockActions"
+        >
+            <settings>
+                <indexField>webhook_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

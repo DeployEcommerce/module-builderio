@@ -1,0 +1,164 @@
+<?xml version="1.0" ?>
+<!--
+  ~ @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
+  ~ @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
+  ~ @Package:   DeployEcommerce_BuilderIO
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="deploy" translate="label" sortOrder="600">
+            <label>Deploy Ecommerce</label>
+        </tab>
+        <section id="builder_io" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                 translate="label">
+            <label>Builder IO Integration</label>
+            <tab>deploy</tab>
+            <resource>DeployEcommerce_BuilderIO::management</resource>
+            <group id="empty" sortOrder="0" showInDefault="1" showInWebsite="1"
+                   translate="label">
+                <label>Workspace Settings</label>
+                <field id="synchronize" translate="label comment" type="button" sortOrder="30"
+                       showInWebsite="1"
+                       showInDefault="1"
+                       showInStore="1"
+                >
+                    <frontend_model>DeployEcommerce\BuilderIO\Block\System\Config\Content</frontend_model>
+                </field>
+            </group>
+            <group id="general_settings" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                   translate="label">
+                <label>General Settings</label>
+                <field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Enable Module</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="builderio_header" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Add BuilderIO Header</label>
+                    <comment><![CDATA[When previewing and editing, proxy your site through BuilderIO servers to
+                    allow iframe access. Alternatively by adding this header it will allow iframes to be loaded from
+                    Builder.io]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="fallback_editor" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Use Fallback Editor</label>
+                    <comment><![CDATA[When using a Luma based theme it often needed to use the fallback editor due to
+                    poor performance.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_cms_home_page" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Overwrite Homepage with BuilderIO page</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cms_home_page" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>BuilderIO Homepage Content</label>
+                    <comment/>
+                    <source_model>DeployEcommerce\BuilderIO\Model\Config\Source\Pages</source_model>
+                    <depends>
+                        <field id="enable_cms_home_page">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="api_settings" sortOrder="10" showInStore="1"
+                   translate="label">
+                <label>Workspace Settings</label>
+                <comment>Enter your Builder IO API keys here, if you have a multi-store please assign each store to a workspace in builder.io</comment>
+                <field id='public_key' translate='label' type='text' sortOrder='10' showInStore='1'>
+                    <label>Workspace Public Key</label>
+                </field>
+                <field id='private_key' translate='label' type='obscure' sortOrder='20' showInStore='1'>
+                    <label>Workspace Private Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="connect" translate="label comment" type="button" sortOrder="30"
+                       showInStore="1"
+                >
+                    <frontend_model>DeployEcommerce\BuilderIO\Block\System\Config\Connect</frontend_model>
+                    <comment>After updating the public/private key, press the Connect button and then "Save Config".</comment>
+                </field>
+                <field id="fields" translate="label comment" type="button" sortOrder="30"
+                       showInStore="1"
+                >
+                    <frontend_model>DeployEcommerce\BuilderIO\Block\System\Config\Fields</frontend_model>
+                    <comment>Create Custom fields for the page modal in builder.io</comment>
+                </field>
+                <field id="organisation_id" type="text" sortOrder="40"  showInStore="1"
+                       translate="label">
+                    <label>Organisation ID</label>
+                    <frontend_model>DeployEcommerce\BuilderIO\Block\System\Config\Disabled</frontend_model>
+                </field>
+                <field id="workspace_id" type="text" sortOrder="40" showInStore="1"
+                       translate="label">
+                    <label>Workspace ID</label>
+                    <frontend_model>DeployEcommerce\BuilderIO\Block\System\Config\Disabled</frontend_model>
+                </field>
+                <field id="workspace_name" type="text" sortOrder="40" showInStore="1"
+                       translate="label">
+                    <label>Workspace Name</label>
+                    <frontend_model>DeployEcommerce\BuilderIO\Block\System\Config\Disabled</frontend_model>
+                </field>
+            </group>
+            <group id="webhook" sortOrder="10" showInStore="1"
+                   translate="label">
+                <label>Webhook Settings</label>
+                <field id="async_enable" type="select" sortOrder="10" showInStore="1"
+                       translate="label">
+                    <label>Enable Async Processing</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="lifetime" type="text" sortOrder="10" showInStore="1"
+                       translate="label">
+                    <label>Lifetime for webhooks</label>
+                    <comment>
+                        The lifetime for webhooks in days, after this time the webhook will be removed from the system.
+                    </comment>
+                </field>
+                <field id="secret_key" type="obscure" sortOrder="10" showInStore="1"
+                       translate="label">
+                    <label>Secret Key</label>
+                    <validate>validate-no-empty</validate>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <comment>
+                        The secret key for the webhook, this is used to verify the webhook is from Builder.io
+                    </comment>
+                </field>
+                <field id="connect" translate="label comment" type="button" sortOrder="30"
+                       showInStore="1"
+                >
+                    <frontend_model>DeployEcommerce\BuilderIO\Block\System\Config\Webhook</frontend_model>
+                    <comment><![CDATA[Adds a Webhook to Builder.io using your store URL. <br />
+                    <strong>Warning</strong> this will remove existing webhooks. For local development, remember
+                    you need to expose your local machine. <br />(ngrok or cloudflare tunnel etc)]]></comment>
+                </field>
+            </group>
+            <group id="sitemap" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1"
+                   translate="label">
+                <label>Sitemap Settings</label>
+                <field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Enable Sitemap</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="changefreq" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Frequency</label>
+                    <source_model>Magento\Sitemap\Model\Config\Source\Frequency</source_model>
+                </field>
+                <field id="priority" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Priority</label>
+                    <backend_model>Magento\Sitemap\Model\Config\Backend\Priority</backend_model>
+                    <comment>Valid values range from 0.0 to 1.0.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
