@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
-  ~ @Author:    Brandon Bishop
-  ~ @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
+  ~ @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
+  ~ @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
   ~ @Package:   DeployEcommerce_BuilderIO
   -->
 
@@ -18,13 +18,6 @@
                 type="DeployEcommerce\BuilderIO\Model\WebhookSearchResultsModel"/>
     <preference for="DeployEcommerce\BuilderIO\Api\ContentPageRepositoryInterface"
                 type="DeployEcommerce\BuilderIO\Model\ContentPageRepository"/>
-    <preference for="DeployEcommerce\BuilderIO\Api\ProductCollectionInterface"
-                type="DeployEcommerce\BuilderIO\Model\ProductCollection"/>
-    <preference for="DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface"
-                type="DeployEcommerce\BuilderIO\Model\ProductCollectionRepository"/>
-    <preference for="DeployEcommerce\BuilderIO\Api\Data\ProductCollectionResultInterface"
-                type="DeployEcommerce\BuilderIO\Service\ProductCollection\ProductsProvider"/>
-
 
     <type name="Magento\Sitemap\Model\ItemProvider\Composite">
         <arguments>
@@ -50,10 +43,6 @@
             <argument xsi:type="array">
                 <item xsi:type="string" name="ContentPage_data_source">ContentPageProvider</item>
             </argument>
-            <argument name="collections" xsi:type="array">
-                <item name="builderio_product_collection_listing_data_source" xsi:type="string">DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Grid\Collection</item>
-                <item name="builderio_products_form_data_source" xsi:type="string">DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Collection</item>
-            </argument>
         </arguments>
     </type>
     <virtualType name="ContentPageProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
@@ -64,18 +53,4 @@
             <argument name="mainTable" xsi:type="string">builderio_content_page</argument>
         </arguments>
     </virtualType>
-    <virtualType name="DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-        <arguments>
-            <argument name="mainTable" xsi:type="string">builderio_collections</argument>
-            <argument name="resourceModel" xsi:type="string">DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection</argument>
-        </arguments>
-    </virtualType>
-    <type name="DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Collection">
-        <arguments>
-            <argument name="mainTable" xsi:type="string">builderio_collections</argument>
-            <argument name="eventPrefix" xsi:type="string">builderio_product_collection_collection</argument>
-            <argument name="eventObject" xsi:type="string">product_collection_collection</argument>
-            <argument name="resourceModel" xsi:type="string">DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection</argument>
-        </arguments>
-    </type>
 </config>

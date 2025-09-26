@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Plugin\Magento\Framework\App\Response;
 
-use DeployEcommerce\BuilderIO\System\Config;
 use Magento\Framework\App\Response\HeaderProvider\AbstractHeaderProvider;
+use DeployEcommerce\BuilderIO\System\Config;
 
 /**
  * Class HeaderProvider

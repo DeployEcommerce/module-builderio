@@ -11,6 +11,7 @@ namespace DeployEcommerce\BuilderIO\Controller\Preview;
 
 use Magento\Cms\Controller\Page\View;
 use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\Controller\Result\ForwardFactory;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 

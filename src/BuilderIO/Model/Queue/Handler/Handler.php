@@ -16,11 +16,10 @@ use DeployEcommerce\BuilderIO\Api\WebhookRepositoryInterface;
 use DeployEcommerce\BuilderIO\Model\WebhookModel;
 use DeployEcommerce\BuilderIO\Service\BuilderIO\Page as PageService;
 use DeployEcommerce\BuilderIO\System\Config;
-use Exception;
 use GuzzleHttp\Exception\GuzzleException;
+use Magento\UrlRewrite\Model\UrlRewriteFactory;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\UrlRewrite\Model\UrlFinderInterface;
-use Magento\UrlRewrite\Model\UrlRewriteFactory;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -100,7 +99,7 @@ class Handler
         $api = PageService::API_HTML_PAGE_ENDPOINT;
 
         // Check if the URL contains a widget if it does use the Qwik API
-        if (str_contains($this->webhook->getWebhookData(), "{{widget")) {
+        if( str_contains($this->webhook->getWebhookData(), "{{widget") ) {
             $api = PageService::API_QWIK_PAGE_ENDPOINT;
         }
 
@@ -108,7 +107,7 @@ class Handler
 
         try {
             $contentPage = $this->contentPageRepository->findByBuilderioPageId($page['id']);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $contentPage = $this->contentPageFactory->create();
         }
 
@@ -134,7 +133,7 @@ class Handler
 
         try {
             $this->contentPageRepository->save($contentPage);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
         }
     }
@@ -144,7 +143,7 @@ class Handler
         try {
             $contentPage = $this->contentPageRepository->findByBuilderioPageId($this->webhook->getBuilderioId());
             $this->contentPageRepository->delete($contentPage);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
         }
     }

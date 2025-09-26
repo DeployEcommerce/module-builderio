@@ -1,24 +1,22 @@
 <?php
-declare(strict_types=1);
-
 /*
  * @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
  * @Package:   DeployEcommerce_BuilderIO
  */
+declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Model;
 
-use DeployEcommerce\BuilderIO\Api\ContentPageRepositoryInterface;
 use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterface;
 use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterfaceFactory;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ContentPageModel\ContentPageCollectionFactory;
+use DeployEcommerce\BuilderIO\Api\ContentPageRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Throwable;
 
 class ContentPageRepository implements ContentPageRepositoryInterface
 {
@@ -51,12 +49,12 @@ class ContentPageRepository implements ContentPageRepositoryInterface
                 __('Could not save the webhook: %1', $exception->getMessage()),
                 $exception
             );
-        } catch (Throwable $exception) {
-            // Log the exception for debugging purposes
-            throw new CouldNotSaveException(
-                __('Could not save the content page: %1', __('Something went wrong while saving the ContentPage.')),
-                $exception
-            );
+        } catch (\Throwable $exception) {
+            // todo fix the exception handling
+//            throw new CouldNotSaveException(
+//                __('Could not save the webhook: %1', __('Something went wrong while saving the ContentPage.')),
+//                $exception
+//            );
         }
 
         return $contentPage;

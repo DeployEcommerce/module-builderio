@@ -12,9 +12,9 @@ namespace DeployEcommerce\BuilderIO\Query\Webhook;
 use DeployEcommerce\BuilderIO\Mapper\WebhookDataMapper;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\WebhookModel\WebhookCollection;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\WebhookModel\WebhookCollectionFactory;
-use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchResultsInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
 

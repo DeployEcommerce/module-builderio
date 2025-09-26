@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 /*
  * @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)

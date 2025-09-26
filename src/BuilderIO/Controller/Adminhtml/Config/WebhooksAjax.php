@@ -9,12 +9,12 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Controller\Adminhtml\Config;
 
-use DeployEcommerce\BuilderIO\Service\BuilderIO\AdminApi;
-use DeployEcommerce\BuilderIO\System\Config;
 use GuzzleHttp\Exception\GuzzleException;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
+use DeployEcommerce\BuilderIO\Service\BuilderIO\AdminApi;
+use DeployEcommerce\BuilderIO\System\Config;
 use Magento\Framework\Serialize\Serializer\Json;
 
 /**
@@ -88,7 +88,7 @@ class WebhooksAjax extends Action
         $counter = 0;
         foreach ($data['data']['models'] as $model) {
 
-            if ($this->config->getFallbackEditor($store)) {
+            if($this->config->getFallbackEditor($store)) {
                 $preview_url = self::FALLBACK_EDITOR_URL;
             } else {
                 $preview_url = $this->config->getStoreUrl($store) . 'builderio/preview/page?model=' . $model['name'];
