@@ -14,6 +14,7 @@ use DeployEcommerce\BuilderIO\Api\Data\WebhookInterfaceFactory;
 use DeployEcommerce\BuilderIO\Model\Queue\Handler\Handler;
 use DeployEcommerce\BuilderIO\Api\WebhookRepositoryInterface;
 use DeployEcommerce\BuilderIO\System\Config;
+use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\CsrfAwareActionInterface;
@@ -145,7 +146,7 @@ class Page implements CsrfAwareActionInterface
                     $this->handler->execute($webhook->getWebhookId());
                 }
 
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->logger->error($e->getMessage());
             }
         }

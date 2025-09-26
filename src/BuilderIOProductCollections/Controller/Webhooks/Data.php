@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace DeployEcommerce\BuilderIO\Controller\Webhooks;
+namespace DeployEcommerce\BuilderIOProductCollections\Controller\Webhooks;
 
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\CsrfAwareActionInterface;

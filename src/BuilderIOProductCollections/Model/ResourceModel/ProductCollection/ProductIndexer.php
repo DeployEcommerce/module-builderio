@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection;
+namespace DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection;
 
 use DeployEcommerce\BuilderIO\Model\ProductCollection;
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection as ProductCollectionResource;

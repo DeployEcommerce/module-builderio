@@ -7,7 +7,7 @@ declare(strict_types=1);
  * @Package:   DeployEcommerce_BuilderIO
  */
 
-namespace DeployEcommerce\BuilderIO\Ui\DataProvider;
+namespace DeployEcommerce\BuilderIOProductCollections\Ui\DataProvider;
 
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\SearchCriteriaBuilder;

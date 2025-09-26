@@ -7,7 +7,7 @@ declare(strict_types=1);
  * @Package:   DeployEcommerce_BuilderIO
  */
 
-namespace DeployEcommerce\BuilderIO\Block\Adminhtml\Edit;
+namespace DeployEcommerce\BuilderIOProductCollectionsProductCollections\Block\Adminhtml\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 

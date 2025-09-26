@@ -7,7 +7,7 @@ declare(strict_types=1);
  * @Package:   DeployEcommerce_BuilderIO
  */
 
-namespace DeployEcommerce\BuilderIO\Model;
+namespace DeployEcommerce\BuilderIOProductCollections\Model;
 
 use DeployEcommerce\BuilderIO\Api\Data\ProductCollectionSearchResultsInterface;
 use DeployEcommerce\BuilderIO\Api\Data\ProductCollectionSearchResultsInterfaceFactory;

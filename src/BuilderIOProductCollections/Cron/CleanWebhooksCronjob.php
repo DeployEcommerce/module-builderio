@@ -6,7 +6,7 @@ declare(strict_types=1);
  * @Package:   DeployEcommerce_BuilderIO
  */
 
-namespace DeployEcommerce\BuilderIO\Cron;
+namespace DeployEcommerce\BuilderIOProductCollections\Cron;
 
 use DeployEcommerce\BuilderIO\Api\WebhookRepositoryInterface;
 use DeployEcommerce\BuilderIO\System\Config;

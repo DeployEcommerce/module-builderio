@@ -7,7 +7,7 @@ declare(strict_types=1);
  * @Package:   DeployEcommerce_BuilderIO
  */
 
-namespace DeployEcommerce\BuilderIO\Block\Adminhtml\ProductCollection\Edit\Tab;
+namespace DeployEcommerce\BuilderIOProductCollections\Block\Adminhtml\ProductCollection\Edit\Tab;
 
 use DeployEcommerce\BuilderIO\Model\ProductCollectionFactory;
 use Magento\Backend\Block\Template\Context;

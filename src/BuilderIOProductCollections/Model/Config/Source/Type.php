@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DeployEcommerce\BuilderIO\Model\Config\Source;
+namespace DeployEcommerce\BuilderIOProductCollections\Model\Config\Source;
 
 use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
 use Magento\Framework\Data\OptionSourceInterface;

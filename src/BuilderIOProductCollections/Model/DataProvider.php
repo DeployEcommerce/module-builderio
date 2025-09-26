@@ -7,7 +7,7 @@ declare(strict_types=1);
  * @Package:   DeployEcommerce_BuilderIO
  */
 
-namespace DeployEcommerce\BuilderIO\Model;
+namespace DeployEcommerce\BuilderIOProductCollections\Model;
 
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory;
 use Magento\Framework\App\ObjectManager;
