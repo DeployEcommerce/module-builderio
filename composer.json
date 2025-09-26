@@ -36,9 +36,8 @@
             "registration.php"
         ],
         "psr-4": {
-            "DeployEcommerce\\BuilderIO\\src\\BuilderIO": "",
-            "DeployEcommerce\\BuilderIO\\src\\BuilderIOProductCollections": ""
+            "DeployEcommerce\\BuilderIO": "src\\BuilderIO",
+            "DeployEcommerce\\BuilderIOProductCollections": "src\\BuilderIOProductCollections"
         }
-
     }
 }
