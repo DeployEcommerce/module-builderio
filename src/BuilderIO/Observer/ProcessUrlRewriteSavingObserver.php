@@ -8,10 +8,10 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Observer;
 
-use DeployEcommerce\BuilderIO\Model\PageUrlRewriteGenerator;
 use Magento\Framework\Event\Observer as EventObserver;
-use Magento\Framework\Event\ObserverInterface;
 use Magento\UrlRewrite\Model\UrlPersistInterface;
+use Magento\Framework\Event\ObserverInterface;
+use DeployEcommerce\BuilderIO\Model\PageUrlRewriteGenerator;
 use Magento\UrlRewrite\Service\V1\Data\UrlRewrite;
 
 /**

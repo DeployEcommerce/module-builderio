@@ -44,9 +44,9 @@ class PathConfig
         $store = $this->storeManager->getStore();
         $value = $this->config->isCmsHomepageEnabled($store->getId());
 
-        if ($value) {
+        if($value) {
             $page_id = $this->config->getCmsHomepage($store->getId());
-            if ($page_id) {
+            if($page_id) {
                 return 'builderio/view/index/id/' . $page_id;
             }
         }

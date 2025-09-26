@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 /*
  * @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
@@ -29,7 +27,7 @@ class Pages implements OptionSourceInterface
     public function __construct(
         private ContentPageRepository $contentPageRepository,
         private SearchCriteriaBuilder $searchCriteriaBuilder
-    ) {
+    ){
     }
 
     /**
@@ -43,7 +41,7 @@ class Pages implements OptionSourceInterface
         $searchCriteria = $this->searchCriteriaBuilder->create();
         $pages = $this->contentPageRepository->getList($searchCriteria);
 
-        if ($pages->getTotalCount()) {
+        if($pages->getTotalCount()) {
             $items = $pages->getItems();
             foreach ($items as $page) {
                 $options[] = ['value' => $page->getId(), 'label' => $page->getTitle()];

@@ -10,6 +10,8 @@ declare(strict_types=1);
 namespace DeployEcommerce\BuilderIO\Controller\View;
 
 use DeployEcommerce\BuilderIO\Api\ContentPageRepositoryInterface;
+use DeployEcommerce\BuilderIO\Helper\Settings;
+use DeployEcommerce\BuilderIO\Model\WebhookRepository;
 use DeployEcommerce\BuilderIO\Registry\CurrentPageContent;
 use DeployEcommerce\BuilderIO\Service\BuilderIO\Page as PageService;
 use DeployEcommerce\BuilderIO\System\Config;
@@ -19,6 +21,7 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\ForwardFactory;
+use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -35,6 +38,7 @@ class Index extends View implements HttpGetActionInterface
      * @param RequestInterface $request
      * @param PageHelper $pageHelper
      * @param ForwardFactory $resultForwardFactory
+     * @param Settings $settings
      * @param PageFactory $pageFactory
      * @param PageService $pageService
      * @param CurrentPageContent $currentCmsContent
@@ -46,6 +50,7 @@ class Index extends View implements HttpGetActionInterface
         RequestInterface                       $request,
         PageHelper                             $pageHelper,
         ForwardFactory                         $resultForwardFactory,
+        private Settings                       $settings,
         private PageFactory                    $pageFactory,
         private PageService                    $pageService,
         private CurrentPageContent             $currentCmsContent,

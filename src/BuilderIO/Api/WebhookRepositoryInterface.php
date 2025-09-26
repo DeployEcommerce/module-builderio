@@ -9,10 +9,10 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Api;
 
-use DeployEcommerce\BuilderIO\Api\Data\WebhookInterface;
 use DeployEcommerce\BuilderIO\Api\Data\WebhookSearchResultsInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\LocalizedException;
+use DeployEcommerce\BuilderIO\Api\Data\WebhookInterface;
 
 /**
  * Interface WebhookRepositoryInterface

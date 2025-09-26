@@ -11,9 +11,9 @@ namespace DeployEcommerce\BuilderIO\System;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Encryption\EncryptorInterface;
-use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\Store;
 use Magento\Store\Model\StoresConfig;
+use Magento\Store\Model\ScopeInterface;
 
 /**
  * Class Config

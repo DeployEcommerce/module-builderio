@@ -11,9 +11,7 @@ namespace DeployEcommerce\BuilderIO\Block\System\Config;
 
 use DeployEcommerce\BuilderIO\System\Config;
 use Magento\Backend\Block\Template\Context;
-use Magento\Backend\Block\Widget\Button;
 use Magento\Config\Block\System\Config\Form\Field;
-use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Helper\SecureHtmlRenderer;
 
@@ -44,7 +42,7 @@ class Webhook extends Field
         private Config $config,
         array $data = [],
         ?SecureHtmlRenderer $secureRenderer = null
-    ) {
+    ){
         parent::__construct($context, $data, $secureRenderer);
     }
 
@@ -56,7 +54,7 @@ class Webhook extends Field
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function _getElementHtml(AbstractElement $element)
+    protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
         return $this->_toHtml();
     }
@@ -80,7 +78,7 @@ class Webhook extends Field
     public function getButtonHtml()
     {
         $button = $this->getLayout()->createBlock(
-            Button::class
+            \Magento\Backend\Block\Widget\Button::class
         )->setData(
             [
                 'id' => 'webhook_button',

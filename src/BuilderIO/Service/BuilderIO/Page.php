@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Service\BuilderIO;
 
+use DeployEcommerce\BuilderIO\Helper\Settings;
 use DeployEcommerce\BuilderIO\Service\BuilderIO;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -41,11 +42,13 @@ class Page
      * Page constructor.
      *
      * @param Client $client
+     * @param Settings $settings
      * @param BuilderIO $builderIO
      * @param Json $serializer
      */
     public function __construct(
         private Client       $client,
+        private Settings     $settings,
         private BuilderIO    $builderIO,
         private Json         $serializer
     ) {

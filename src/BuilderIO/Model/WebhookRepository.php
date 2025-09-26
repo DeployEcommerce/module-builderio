@@ -19,7 +19,6 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Throwable;
 
 /**
  * Class WebhookRepository
@@ -65,7 +64,7 @@ class WebhookRepository implements WebhookRepositoryInterface
                 __('Could not save the webhook: %1', $exception->getMessage()),
                 $exception
             );
-        } catch (Throwable $exception) {
+        } catch (\Throwable $exception) {
             throw new CouldNotSaveException(
                 __('Could not save the webhook: %1', __('Something went wrong while saving the webhook.')),
                 $exception
@@ -108,7 +107,7 @@ class WebhookRepository implements WebhookRepositoryInterface
                 __('Could not delete the webhook: %1', $exception->getMessage()),
                 $exception
             );
-        } catch (Throwable $exception) {
+        } catch (\Throwable $exception) {
             throw new CouldNotSaveException(
                 __('Could not delete the webhook: %1', __('Something went wrong while deleting the webhook.')),
                 $exception

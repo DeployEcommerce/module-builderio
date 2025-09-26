@@ -8,10 +8,8 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Model\ResourceModel;
 
-use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterface;
-use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
-use Magento\Framework\Stdlib\DateTime;
+use DeployEcommerce\BuilderIO\Api\Data\ContentPageInterface;
 
 /**
  * Class ContentPageResource
@@ -39,12 +37,12 @@ class ContentPageResource extends AbstractDb
     /**
      * @inheritDoc
      */
-    protected function _beforeSave(AbstractModel $object)
+    protected function _beforeSave(\Magento\Framework\Model\AbstractModel $object)
     {
         if ($object->isObjectNew()) {
-            $object->setCreatedAt((new \DateTime())->format(DateTime::DATETIME_PHP_FORMAT));
+            $object->setCreatedAt((new \DateTime())->format(\Magento\Framework\Stdlib\DateTime::DATETIME_PHP_FORMAT));
         }
-        $object->setUpdatedAt((new \DateTime())->format(DateTime::DATETIME_PHP_FORMAT));
+        $object->setUpdatedAt((new \DateTime())->format(\Magento\Framework\Stdlib\DateTime::DATETIME_PHP_FORMAT));
         return parent::_beforeSave($object);
     }
 }
