@@ -7,7 +7,7 @@ declare(strict_types=1);
  * @Package:   DeployEcommerce_BuilderIO
  */
 
-namespace DeployEcommerce\BuilderIO\Controller\Adminhtml\Products;
+namespace DeployEcommerce\BuilderIOProductCollections\Controller\Adminhtml\Products;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Forward;

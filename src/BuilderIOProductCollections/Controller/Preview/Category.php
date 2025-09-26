@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace DeployEcommerce\BuilderIO\Controller\Preview;
+namespace DeployEcommerce\BuilderIOProductCollections\Controller\Preview;
 
 use Magento\Catalog\Controller\Category\View;
 use Magento\Framework\App\Action\HttpGetActionInterface;

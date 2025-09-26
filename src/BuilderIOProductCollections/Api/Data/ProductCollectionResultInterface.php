@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace DeployEcommerce\BuilderIO\Api\Data;
+namespace DeployEcommerce\BuilderIOProductCollections\Api\Data;
 
 interface ProductCollectionResultInterface
 {

@@ -16,6 +16,7 @@ use DeployEcommerce\BuilderIO\Api\WebhookRepositoryInterface;
 use DeployEcommerce\BuilderIO\Model\WebhookModel;
 use DeployEcommerce\BuilderIO\Service\BuilderIO\Page as PageService;
 use DeployEcommerce\BuilderIO\System\Config;
+use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Magento\UrlRewrite\Model\UrlRewriteFactory;
 use Magento\Framework\Serialize\Serializer\Json;
@@ -107,7 +108,7 @@ class Handler
 
         try {
             $contentPage = $this->contentPageRepository->findByBuilderioPageId($page['id']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $contentPage = $this->contentPageFactory->create();
         }
 
@@ -133,7 +134,7 @@ class Handler
 
         try {
             $this->contentPageRepository->save($contentPage);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->error($e->getMessage());
         }
     }
@@ -143,7 +144,7 @@ class Handler
         try {
             $contentPage = $this->contentPageRepository->findByBuilderioPageId($this->webhook->getBuilderioId());
             $this->contentPageRepository->delete($contentPage);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->error($e->getMessage());
         }
     }

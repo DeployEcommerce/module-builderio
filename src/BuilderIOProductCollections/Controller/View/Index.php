@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace DeployEcommerce\BuilderIO\Controller\View;
+namespace DeployEcommerce\BuilderIOProductCollections\Controller\View;
 
 use DeployEcommerce\BuilderIO\Api\ContentPageRepositoryInterface;
 use DeployEcommerce\BuilderIO\Registry\CurrentPageContent;

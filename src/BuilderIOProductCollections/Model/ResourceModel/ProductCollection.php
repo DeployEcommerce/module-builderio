@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DeployEcommerce\BuilderIO\Model\ResourceModel;
+namespace DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 

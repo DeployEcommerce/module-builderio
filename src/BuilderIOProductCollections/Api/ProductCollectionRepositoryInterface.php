@@ -6,7 +6,7 @@ declare(strict_types=1);
  * @Package:   DeployEcommerce_BuilderIO
  */
 
-namespace DeployEcommerce\BuilderIO\Api;
+namespace DeployEcommerce\BuilderIOProductCollections\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 

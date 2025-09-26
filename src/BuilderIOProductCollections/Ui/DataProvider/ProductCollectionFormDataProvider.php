@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace DeployEcommerce\BuilderIO\Ui\DataProvider;
+namespace DeployEcommerce\BuilderIOProductCollections\Ui\DataProvider;
 
 use DeployEcommerce\BuilderIO\Api\ProductCollectionInterfaceFactory;
 use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;

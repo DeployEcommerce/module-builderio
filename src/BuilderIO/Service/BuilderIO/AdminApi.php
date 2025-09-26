@@ -4,7 +4,6 @@
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
  * @Package:   DeployEcommerce_BuilderIO
  */
-
 declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIO\Service\BuilderIO;

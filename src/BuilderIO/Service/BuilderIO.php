@@ -11,6 +11,7 @@ namespace DeployEcommerce\BuilderIO\Service;
 
 use DeployEcommerce\BuilderIO\Helper\Settings;
 use DeployEcommerce\BuilderIO\System\Config;
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Response;
@@ -62,7 +63,7 @@ class BuilderIO
                 return (string) $response->getBody()->getContents();
             }
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->settings->logError(__("API failure %1 for endpoint %2", $e->getMessage(), $endpoint)->__toString());
             return null;
         }
@@ -98,7 +99,7 @@ class BuilderIO
                 return $response;
             }
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->settings->logError(__("API failure %1 for endpoint %2", $e->getMessage(), $endpoint)->__toString());
             return null;
         }

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 
 
-namespace DeployEcommerce\BuilderIO\Model\Indexer\ProductCollection;
+namespace DeployEcommerce\BuilderIOProductCollections\Model\Indexer\ProductCollection;
 
 use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory as ProductCollectionFactory;
 use Magento\Framework\Exception\LocalizedException;

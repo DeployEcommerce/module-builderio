@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DeployEcommerce\BuilderIO\Model;
+namespace DeployEcommerce\BuilderIOProductCollections\Model;
 
 use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
 use Magento\Catalog\Api\CategoryRepositoryInterface;

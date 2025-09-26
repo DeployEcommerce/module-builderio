@@ -7,7 +7,7 @@ declare(strict_types=1);
  * @Package:   DeployEcommerce_BuilderIO
  */
 
-namespace DeployEcommerce\BuilderIO\Block\Adminhtml\Edit;
+namespace DeployEcommerce\BuilderIOProductCollections\Block\Adminhtml\Edit;
 
 use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
 use Magento\Backend\Block\Widget\Context;

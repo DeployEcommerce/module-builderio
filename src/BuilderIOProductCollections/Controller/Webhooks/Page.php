@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace DeployEcommerce\BuilderIO\Controller\Webhooks;
+namespace DeployEcommerce\BuilderIOProductCollections\Controller\Webhooks;
 
 use DeployEcommerce\BuilderIO\Api\Data\WebhookInterface;
 use DeployEcommerce\BuilderIO\Api\Data\WebhookInterfaceFactory;

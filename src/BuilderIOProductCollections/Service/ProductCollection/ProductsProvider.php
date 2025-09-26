@@ -7,9 +7,10 @@ declare(strict_types=1);
  * @Package:   DeployEcommerce_BuilderIO
  */
 
-namespace DeployEcommerce\BuilderIO\Service\ProductCollection;
+namespace DeployEcommerce\BuilderIOProductCollections\Service\ProductCollection;
 
 use DeployEcommerce\BuilderIO\Api\Data\ProductCollectionResultInterface;
+use Exception;
 use Magento\Catalog\Model\Config as CatalogConfig;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product\Visibility;
@@ -70,7 +71,7 @@ class ProductsProvider implements ProductCollectionResultInterface
     {
         try {
             $storeId = $this->storeManager->getStore()->getId();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $storeId = $this->storeManager->getDefaultStoreView()->getId();
         }
 

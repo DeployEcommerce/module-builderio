@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DeployEcommerce\BuilderIO\Ui\Component\Listing\Column;
+namespace DeployEcommerce\BuilderIOProductCollections\Ui\Component\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
