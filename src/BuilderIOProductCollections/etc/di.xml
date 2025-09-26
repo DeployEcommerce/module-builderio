@@ -8,16 +8,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <preference for="DeployEcommerce\BuilderIO\Api\Data\WebhookInterface"
-                type="DeployEcommerce\BuilderIO\Model\WebhookModel"/>
-    <preference for="DeployEcommerce\BuilderIO\Api\WebhookRepositoryInterface"
-                type="DeployEcommerce\BuilderIO\Model\WebhookRepository"/>
-    <preference for="DeployEcommerce\BuilderIO\Api\Data\ContentPageInterface"
-                type="DeployEcommerce\BuilderIO\Model\ContentPageModel"/>
-    <preference for="DeployEcommerce\BuilderIO\Api\Data\WebhookSearchResultsInterface"
-                type="DeployEcommerce\BuilderIO\Model\WebhookSearchResultsModel"/>
-    <preference for="DeployEcommerce\BuilderIO\Api\ContentPageRepositoryInterface"
-                type="DeployEcommerce\BuilderIO\Model\ContentPageRepository"/>
     <preference for="DeployEcommerce\BuilderIO\Api\ProductCollectionInterface"
                 type="DeployEcommerce\BuilderIO\Model\ProductCollection"/>
     <preference for="DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface"
@@ -25,45 +15,6 @@
     <preference for="DeployEcommerce\BuilderIO\Api\Data\ProductCollectionResultInterface"
                 type="DeployEcommerce\BuilderIO\Service\ProductCollection\ProductsProvider"/>
 
-
-    <type name="Magento\Sitemap\Model\ItemProvider\Composite">
-        <arguments>
-            <argument name="itemProviders" xsi:type="array">
-                <item name="builderioProvider" xsi:type="object">DeployEcommerce\BuilderIO\Model\Sitemap\ItemProvider\Page</item>
-            </argument>
-        </arguments>
-    </type>
-    <virtualType name="ContentPageDataProvider"
-                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-        <arguments>
-            <argument name="resourceModel" xsi:type="string">
-                DeployEcommerce\BuilderIO\Model\ResourceModel\ContentPageModel\ContentPageCollection
-            </argument>
-            <argument name="mainTable" xsi:type="string">builderio_content_page</argument>
-        </arguments>
-    </virtualType>
-    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-        <arguments>
-            <argument xsi:type="array">
-                <item xsi:type="string" name="Page_data_source">ContentPageDataProvider</item>
-            </argument>
-            <argument xsi:type="array">
-                <item xsi:type="string" name="ContentPage_data_source">ContentPageProvider</item>
-            </argument>
-            <argument name="collections" xsi:type="array">
-                <item name="builderio_product_collection_listing_data_source" xsi:type="string">DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Grid\Collection</item>
-                <item name="builderio_products_form_data_source" xsi:type="string">DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Collection</item>
-            </argument>
-        </arguments>
-    </type>
-    <virtualType name="ContentPageProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-        <arguments>
-            <argument name="resourceModel" xsi:type="string">
-                DeployEcommerce\BuilderIO\Model\ResourceModel\ContentPageModel\ContentPageCollection
-            </argument>
-            <argument name="mainTable" xsi:type="string">builderio_content_page</argument>
-        </arguments>
-    </virtualType>
     <virtualType name="DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">builderio_collections</argument>
