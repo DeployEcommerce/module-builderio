@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /*
  * @Author:    Dan Lewis (dan.lewis@deploy.co.uk)
  * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
