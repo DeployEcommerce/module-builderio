@@ -1,0 +1,54 @@
+<?php
+/*
+ * @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
+ * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
+ * @Package:   DeployEcommerce_BuilderIO
+ */
+
+/**
+ * @var $block \DeployEcommerce\BuilderIO\Block\System\Config\Fields
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+?>
+<?php
+$url = $block->getAjaxConnectUrl();
+$scriptString = <<<script
+require([
+    'jquery',
+    'prototype',
+    'mage/backend/validation',
+    'jquery/validate'
+], function(jQuery){
+
+    jQuery('#fields_button').click(function () {
+        $('fields_sync_span').removeClassName('no-display');
+        $('fields_sync_message_span').update('Adding Custom Fields to Models');
+        Form.Element.disable('fields_button');
+
+        jQuery.ajax({
+            url: "$url",
+            type: "GET",
+            contentType: "application/json",
+        })
+        .done(function(response) {
+            console.log(response);
+        })
+        .fail(function() {
+            $('fields_sync_message_span').update('Something went wrong');
+        })
+        .always(function() {
+            Form.Element.enable('fields_button');
+            $('fields_sync_span').addClassName('no-display');
+        });
+    });
+});
+script;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
+<span class="sync-indicator no-display" id="fields_sync_span">
+    <img alt="Synchronize"
+         src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/process_spinner.gif')) ?>"
+    />
+    <span id="fields_sync_message_span"></span>
+</span>
+<?= $block->getButtonHtml() ?>

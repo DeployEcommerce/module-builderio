@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+  ~ @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
+  ~ @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
+  ~ @Package:   DeployEcommerce_BuilderIO
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="DeployEcommerce_BuilderIO::management" title="BuilderIO Webhook Management">
+                    <resource id="DeployEcommerce_BuilderIO::listing" title="Content Pages"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

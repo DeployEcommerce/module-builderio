@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!--
+  ~ @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
+  ~ @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
+  ~ @Package:   DeployEcommerce_BuilderIO
+  -->
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="builderio_webhook"
+           resource="default"
+           charset="utf8mb4"
+           collation="utf8mb4_unicode_ci"
+           engine="innodb"
+           comment="Webhook from BuilderIO">
+        <column xsi:type="int" name="webhook_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="webhook_id"/>
+        </constraint>
+        <index referenceId="WEBHOOK_WEBHOOK_ID" indexType="btree">
+            <column name="webhook_id"/>
+        </index>
+        <column xsi:type="varchar" name="operation" nullable="false" comment="Operation"/>
+        <column xsi:type="varchar" name="model_name" nullable="false" comment="Model Name e.g. Page"/>
+        <column xsi:type="varchar" name="owner_id" nullable="false" comment="Owner ID"/>
+        <column xsi:type="datetime" name="created_date" nullable="false" comment="Created Date"/>
+        <column xsi:type="varchar" name="builderio_id" nullable="false" comment="Builder IO Content ID"/>
+        <column xsi:type="smallint" name="version" nullable="false" comment="Version"/>
+        <column xsi:type="varchar" name="name" nullable="false" comment="Name"/>
+        <column xsi:type="varchar" name="model_id" nullable="false" comment="Model ID"/>
+        <column xsi:type="varchar" name="published" nullable="false" comment="Published Status"/>
+        <column xsi:type="text" name="meta" nullable="false" comment="Meta"/>
+        <column xsi:type="varchar" name="priority" nullable="false" comment="Priority"/>
+        <column xsi:type="longtext" name="query" nullable="false" comment="Query"/>
+        <column xsi:type="longtext" name="webhook_data" nullable="false" comment="Webhook Data"/>
+        <column xsi:type="longtext" name="metrics" nullable="false" comment="Metrics"/>
+        <column xsi:type="longtext" name="variations" nullable="false" comment="Variations"/>
+        <column xsi:type="datetime" name="last_updated" nullable="false" comment="Last Updated"/>
+        <column xsi:type="datetime" name="first_published" nullable="false" comment="First Published"/>
+        <column xsi:type="varchar" name="preview_url" nullable="false" comment="Preview Url"/>
+        <column xsi:type="varchar" name="test_ratio" nullable="false" comment="Test Ratio"/>
+        <column xsi:type="varchar" name="screenshot" nullable="false" comment="Screenshot"/>
+        <column xsi:type="varchar" name="created_by" nullable="false" comment="Created By"/>
+        <column xsi:type="varchar" name="last_updated_by" nullable="false" comment="Last Updated By"/>
+        <column xsi:type="varchar" name="folders" nullable="false" comment="folders"/>
+    </table>
+
+    <table name="builderio_content_page"
+           resource="default"
+           charset="utf8mb4"
+           collation="utf8mb4_unicode_ci"
+           engine="innodb"
+           comment="Page Content from BuilderIO"
+    >
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="BUILDERIO_CONTENT_PAGE_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+        <column xsi:type="varchar" name="builderio_page_id" nullable="false" />
+        <column xsi:type="varchar" name="model_name" comment="Model Name" default="page" />
+        <column xsi:type="varchar" name="url" comment="Url"/>
+        <column xsi:type="varchar" name="title" comment="Page Title"/>
+        <column xsi:type="text" name="meta_description" comment="Meta Description"/>
+        <column xsi:type="text" name="meta_keywords" comment="Meta Keywords"/>
+        <column xsi:type="varchar" name="store_ids" comment="Store Ids"/>
+        <column xsi:type="varchar" name="status" comment="Status"/>
+        <column xsi:type="longtext" name="html" comment="html"/>
+        <column xsi:type="datetime" name="created_at" comment="Created At"/>
+        <column xsi:type="datetime" name="updated_at" comment="Updated At"/>
+    </table>
+
+    <table name="builderio_content_section"
+           resource="default"
+           charset="utf8mb4"
+           collation="utf8mb4_unicode_ci"
+           engine="innodb"
+           comment="Section Content from BuilderIO"
+    >
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="BUILDERIO_CONTENT_SECTION_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+        <column xsi:type="varchar" name="builderio_section_id" nullable="false"/>
+        <column xsi:type="varchar" name="model_name" comment="Model Name" default="page" />
+        <column xsi:type="varchar" name="url" comment="Url"/>
+        <column xsi:type="varchar" name="store_ids" comment="Store Ids"/>
+        <column xsi:type="varchar" name="status" comment="Status"/>
+        <column xsi:type="longtext" name="html" nullable="false" comment="html"/>
+        <column xsi:type="datetime" name="created_at" comment="Created At"/>
+        <column xsi:type="datetime" name="updated_at" comment="Updated At"/>
+    </table>
+
+    <table name="builderio_collections" resource="default" engine="innodb">
+        <column name="id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Primary Key"/>
+        <column name="name" xsi:type="varchar" length="255" nullable="false" comment="Name"/>
+        <column name="type" xsi:type="varchar" length="32" nullable="false" comment="Type"/>
+        <column name="config" xsi:type="text" nullable="true" comment="Configuration Data"/>
+        <column name="product_count" xsi:type="int" padding="10" unsigned="true" nullable="false" default="0"
+                comment="Product Count"/>
+        <column name="is_active" xsi:type="smallint" unsigned="false" nullable="false" default="1"
+                comment="Is Active"/>
+        <column name="created_at" xsi:type="timestamp" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column name="updated_at" xsi:type="timestamp" nullable="false" default="CURRENT_TIMESTAMP" on_update="true"
+                comment="Update Time"/>
+        <column name="conditions_serialized" xsi:type="text" nullable="true" comment="Conditions Serialized"/>
+
+        <!-- Primary Key Constraint -->
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="builderio_collections_product_index"
+           resource="default"
+           charset="utf8mb4"
+           collation="utf8mb4_unicode_ci"
+           engine="innodb"
+           comment="BuilderIO Product Collection Product Index"
+    >
+        <column xsi:type="int" name="index_id" unsigned="true" nullable="false" identity="true" />
+        <column xsi:type="int" name="collection_id" unsigned="true" nullable="false" comment="Collection ID" />
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false" comment="Product ID" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="index_id"/>
+        </constraint>
+        <constraint xsi:type="foreign"
+                    referenceId="BUILDERIO_COLLECTIONS_PRD_IDX_COLLECTION_ID_CATALOG_RULE_RULE_ID"
+                    table="builderio_collections_product_index"
+                    column="collection_id"
+                    referenceTable="builderio_collections"
+                    referenceColumn="id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign"
+                    referenceId="BUILDERIO_COLLECTIONS_PRD_IDX_PRD_ID_CAT_PRD_ENTT_ENTT_ID"
+                    table="builderio_collections_product_index"
+                    column="product_id"
+                    referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+        <index referenceId="BUILDERIO_COLLECTIONS_PRODUCT_INDEX_COLLECTION_ID" indexType="btree">
+            <column name="collection_id"/>
+        </index>
+        <index referenceId="BUILDERIO_COLLECTIONS_PRODUCT_INDEX_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
+</schema>

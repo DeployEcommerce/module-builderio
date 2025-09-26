@@ -1,0 +1,56 @@
+<?php
+/*
+ * @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
+ * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
+ * @Package:   DeployEcommerce_BuilderIO
+ */
+
+/**
+ * @var $block \DeployEcommerce\BuilderIO\Block\System\Config\Connect
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+?>
+<?php
+$url = $block->getAjaxConnectUrl();
+$scriptString = <<<script
+require([
+    'jquery',
+    'prototype',
+    'mage/backend/validation',
+    'jquery/validate'
+], function(jQuery){
+
+    jQuery('#webhook_button').click(function () {
+        $('webhook_sync_span').removeClassName('no-display');
+        $('webhook_sync_message_span').update('Adding Webhooks to Builder.io');
+        Form.Element.disable('webhook_button');
+
+        jQuery.ajax({
+            url: "$url",
+            type: "GET",
+            contentType: "application/json",
+        })
+        .done(function(response) {
+            jQuery('#webhook_button').parent().append('<strong>' + response.count +
+            ' Webhooks have been added</strong>');
+            $('webhook_sync_message_span').update('');
+        })
+        .fail(function() {
+            $('webhook_sync_message_span').update('Something went wrong');
+        })
+        .always(function() {
+            Form.Element.enable('webhook_button');
+            $('webhook_sync_span').addClassName('no-display');
+        });
+    });
+});
+script;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
+<span class="sync-indicator no-display" id="webhook_sync_span">
+    <img alt="Synchronize"
+         src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/process_spinner.gif')) ?>"
+    />
+    <span id="webhook_sync_message_span"></span>
+</span>
+<?= $block->getButtonHtml() ?>
