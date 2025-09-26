@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * @Author:    Brandon Bishop
  * @Copyright: 2025 DeployEcommerce (https://www.deploy.co.uk
