@@ -12,6 +12,7 @@ namespace DeployEcommerce\BuilderIOProductCollections\Controller\Adminhtml\Produ
 use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionInterface;
 use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionInterfaceFactory;
 use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionRepositoryInterface;
+use DeployEcommerce\BuilderIOProductCollections\Model\Indexer\ProductCollection\ProductIndexer;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\UrlInterface;
@@ -20,6 +21,7 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Indexer\IndexerRegistry;
 use Throwable;
 
 class Save extends Action
@@ -40,7 +42,9 @@ class Save extends Action
         private ProductCollectionRepositoryInterface $productCollectionRepository,
         private ProductRepositoryInterface $productRepository,
         private ProductCollectionInterfaceFactory $productCollectionInterfaceFactory,
-        private UrlInterface $urlBuilder
+        private UrlInterface $urlBuilder,
+        private ProductIndexer $productIndexer,
+        private IndexerRegistry $indexerRegistry,
     ) {
         parent::__construct($context);
     }
@@ -100,10 +104,17 @@ class Save extends Action
                 return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
             }
 
+
+            $index = $this->indexerRegistry->get("builderio_product_collection");
+
+            if(!$index->isScheduled()){
+                $this->productIndexer->reindexRow((int) $model->getId());
+            } else {
+                $index->invalidate();
+            }
+
             $this->messageManager->addSuccessMessage(__('You saved the product collection.'));
             $this->dataPersistor->clear('builderio_product_collection');
-
-            
 
             return $resultRedirect->setPath('*/*/');
         }
