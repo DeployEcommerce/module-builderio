@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+  ~ @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
+  ~ @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
+  ~ @Package:   DeployEcommerce_BuilderIO
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="cms_page_view" />
+    <head>
+        <meta name="robots" content="NOINDEX,NOFOLLOW"/>
+        <script src="https://cdn.builder.io/js/webcomponents" src_type="url"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="cms_page" remove="true"/>
+            <block name="builderio.preview.page" template="DeployEcommerce_BuilderIO::preview/block.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">
+                        DeployEcommerce\BuilderIOProductCollections\ViewModel\Preview\Page
+                    </argument>
+                    <argument name="builderio_model" xsi:type="string">page</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,22 @@
+{
+    "builderio_product_collections": {
+        "column": {
+            "product_collections_id": true,
+            "id": true,
+            "name": true,
+            "type": true,
+            "config": true,
+            "product_count": true,
+            "is_active": true,
+            "conditions_serialized": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "BUILDERIO_PRODUCT_COLLECTIONS_PRODUCT_COLLECTIONS_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
