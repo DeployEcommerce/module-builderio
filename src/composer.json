@@ -33,10 +33,11 @@
     ],
     "autoload": {
         "files": [
-            "registration.php"
+            "src/BuilderIO/registration.php",
+            "src/BuilderIOProductCollections/registration.php"
         ],
         "psr-4": {
-            "DeployEcommerce\\BuilderIO\\": ""
+            "DeployEcommerce\": "src/"
         }
     }
 }
