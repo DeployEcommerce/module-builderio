@@ -1,0 +1,22 @@
+<?php
+/*
+ * @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
+ * @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
+ * @Package:   DeployEcommerce_BuilderIO
+ */
+
+use DeployEcommerce\BuilderIOProductCollections\ViewModel\Preview\Page;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+/**
+ * @var Template $block
+ * @var Escaper $escaper
+ * @var Page $viewModel
+ */
+$viewModel = $block->getViewModel();
+?>
+<builder-component
+    model="<?= $escaper->escapeHtmlAttr($viewModel->getModelName()); ?>"
+    api-key="<?= $escaper->escapeHtmlAttr($viewModel->getApiKey()); ?>"
+></builder-component>

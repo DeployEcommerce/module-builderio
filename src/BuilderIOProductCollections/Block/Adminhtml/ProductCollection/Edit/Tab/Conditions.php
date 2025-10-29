@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Block\Adminhtml\ProductCollection\Edit\Tab;
 
-use DeployEcommerce\BuilderIO\Model\ProductCollectionFactory;
+use DeployEcommerce\BuilderIOProductCollections\Model\ProductCollectionFactory;
 use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Widget\Form\Renderer\Fieldset;

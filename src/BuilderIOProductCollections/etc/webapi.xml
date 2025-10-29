@@ -7,7 +7,7 @@
 
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
     <route url="/V1/builderio/collections/:collectionId" method="GET">
-        <service class="DeployEcommerce\BuilderIO\Api\Data\ProductCollectionResultInterface" method="getProductCollection"/>
+        <service class="DeployEcommerce\BuilderIOProductCollections\Api\Data\ProductCollectionResultInterface" method="getProductCollection"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>

@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Model;
 
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory;
+use DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection\CollectionFactory;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
@@ -18,7 +18,7 @@ use Magento\Ui\DataProvider\Modifier\PoolInterface;
 class DataProvider extends AbstractDataProvider
 {
     /**
-     * @var \DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Collection
+     * @var \DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection\Collection
      */
     protected $collection;
 
@@ -98,7 +98,7 @@ class DataProvider extends AbstractDataProvider
     /**
      * Convert model data to array format for forms.
      *
-     * @param \DeployEcommerce\BuilderIO\Model\ProductCollection $model
+     * @param \DeployEcommerce\BuilderIOProductCollections\Model\ProductCollection $model
      * @return array
      */
     private function convertValues($model)

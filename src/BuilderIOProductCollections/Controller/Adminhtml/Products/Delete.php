@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Controller\Adminhtml\Products;
 
-use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
+use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionRepositoryInterface;
 use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -17,7 +17,7 @@ use Magento\Backend\App\Action\Context;
 class Delete extends Action
 {
     /**
-     * @var \DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface
+     * @var \DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionRepositoryInterface
      */
     protected $productCollectionRepository;
 
@@ -25,7 +25,7 @@ class Delete extends Action
      * Constructor
      *
      * @param \Magento\Backend\App\Action\Context $context
-     * @param \DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface $productCollectionRepository
+     * @param \DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionRepositoryInterface $productCollectionRepository
      */
     public function __construct(
         Context $context,

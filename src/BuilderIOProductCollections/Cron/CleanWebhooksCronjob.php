@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Cron;
 
-use DeployEcommerce\BuilderIO\Api\WebhookRepositoryInterface;
-use DeployEcommerce\BuilderIO\System\Config;
+use DeployEcommerce\BuilderIOProductCollections\Api\WebhookRepositoryInterface;
+use DeployEcommerce\BuilderIOProductCollections\System\Config;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Stdlib\DateTime\DateTime;

@@ -9,7 +9,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
         <route id="builderio" frontName="builderio">
-            <module name="DeployEcommerce_BuilderIO"/>
+            <module name="DeployEcommerce_BuilderIOProductCollections" before="DeployEcommerce_BuilderIO"/>
         </route>
     </router>
 </config>

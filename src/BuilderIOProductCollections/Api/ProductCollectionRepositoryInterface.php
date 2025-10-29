@@ -19,7 +19,7 @@ interface ProductCollectionRepositoryInterface
      * I need this to return products in json form
      *
      * @param int $id
-     * @return \DeployEcommerce\BuilderIO\Api\Data\ProductCollectionSearchResultsInterface
+     * @return \DeployEcommerce\BuilderIOProductCollections\Api\Data\ProductCollectionSearchResultsInterface
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getById($id): ProductCollectionInterface;

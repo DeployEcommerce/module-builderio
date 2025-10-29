@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Block\Adminhtml\Edit;
 
-use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
+use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionRepositoryInterface;
 use Magento\Backend\Block\Widget\Context;
 use Magento\Framework\Exception\NoSuchEntityException;
 
@@ -21,13 +21,13 @@ class GenericButton
     protected $context;
 
     /**
-     * @var \DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface
+     * @var \DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionRepositoryInterface
      */
     protected $productCollectionRepository;
 
     /**
      * @param \Magento\Backend\Block\Widget\Context $context
-     * @param \DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface $productCollectionRepository
+     * @param \DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionRepositoryInterface $productCollectionRepository
      */
     public function __construct(
         Context $context,

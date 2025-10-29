@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Model\Config\Source;
 
-use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
+use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionInterface;
 use Magento\Framework\Data\OptionSourceInterface;
 
 class Type implements OptionSourceInterface

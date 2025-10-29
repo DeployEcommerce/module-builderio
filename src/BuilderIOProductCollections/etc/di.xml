@@ -8,25 +8,36 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <preference for="DeployEcommerce\BuilderIO\Api\ProductCollectionInterface"
-                type="DeployEcommerce\BuilderIO\Model\ProductCollection"/>
-    <preference for="DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface"
-                type="DeployEcommerce\BuilderIO\Model\ProductCollectionRepository"/>
-    <preference for="DeployEcommerce\BuilderIO\Api\Data\ProductCollectionResultInterface"
-                type="DeployEcommerce\BuilderIO\Service\ProductCollection\ProductsProvider"/>
+    <preference for="DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionInterface"
+                type="DeployEcommerce\BuilderIOProductCollections\Model\ProductCollection"/>
+    <preference for="DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionRepositoryInterface"
+                type="DeployEcommerce\BuilderIOProductCollections\Model\ProductCollectionRepository"/>
+    <preference for="DeployEcommerce\BuilderIOProductCollections\Api\Data\ProductCollectionResultInterface"
+                type="DeployEcommerce\BuilderIOProductCollections\Service\ProductCollection\ProductsProvider"/>
 
-    <virtualType name="DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <virtualType name="DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">builderio_collections</argument>
-            <argument name="resourceModel" xsi:type="string">DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection</argument>
+            <argument name="resourceModel" xsi:type="string">DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection</argument>
         </arguments>
     </virtualType>
-    <type name="DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Collection">
+    <type name="DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection\Collection">
         <arguments>
             <argument name="mainTable" xsi:type="string">builderio_collections</argument>
             <argument name="eventPrefix" xsi:type="string">builderio_product_collection_collection</argument>
             <argument name="eventObject" xsi:type="string">product_collection_collection</argument>
-            <argument name="resourceModel" xsi:type="string">DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection</argument>
+            <argument name="resourceModel" xsi:type="string">DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection</argument>
         </arguments>
     </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="builderio_product_collection_listing_data_source" xsi:type="string">DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection\Grid\Collection</item>
+                <item name="builderio_products_form_data_source" xsi:type="string">DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+
 </config>

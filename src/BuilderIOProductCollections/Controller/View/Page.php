@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Controller\View;
 
-use DeployEcommerce\BuilderIO\Api\ContentPageRepositoryInterface;
-use DeployEcommerce\BuilderIO\Registry\CurrentPageContent;
-use DeployEcommerce\BuilderIO\Service\BuilderIO\Page as PageService;
+use DeployEcommerce\BuilderIOProductCollections\Api\ContentPageRepositoryInterface;
+use DeployEcommerce\BuilderIOProductCollections\Registry\CurrentPageContent;
+use DeployEcommerce\BuilderIOProductCollections\Service\BuilderIO\Page as PageService;
 use Magento\Cms\Controller\Page\View;
 use Magento\Cms\Helper\Page as PageHelper;
 use Magento\Framework\App\Action\Context;

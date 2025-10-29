@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Controller\Adminhtml\Products;
 
-use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
-use DeployEcommerce\BuilderIO\Api\ProductCollectionInterfaceFactory;
-use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
+use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionInterface;
+use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionInterfaceFactory;
+use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionRepositoryInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\UrlInterface;
