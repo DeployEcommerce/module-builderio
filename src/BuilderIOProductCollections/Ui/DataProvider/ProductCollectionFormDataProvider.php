@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Ui\DataProvider;
 
-use DeployEcommerce\BuilderIO\Api\ProductCollectionInterfaceFactory;
-use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Collection;
+use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionInterfaceFactory;
+use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionRepositoryInterface;
+use DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection\Collection;
 use Magento\CatalogRule\Model\Data\Condition\Converter;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\SearchCriteriaBuilder;

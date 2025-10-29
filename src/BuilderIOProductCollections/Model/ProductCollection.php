@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Model;
 
-use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
+use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionInterface;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\ProductFactory;

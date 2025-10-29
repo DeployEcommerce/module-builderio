@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Service\ProductCollection;
 
-use DeployEcommerce\BuilderIO\Api\Data\ProductCollectionResultInterface;
+use DeployEcommerce\BuilderIOProductCollections\Api\Data\ProductCollectionResultInterface;
 use Exception;
 use Magento\Catalog\Model\Config as CatalogConfig;
 use Magento\Catalog\Api\ProductRepositoryInterface;

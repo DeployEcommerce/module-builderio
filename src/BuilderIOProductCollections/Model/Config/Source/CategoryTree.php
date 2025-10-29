@@ -41,7 +41,7 @@ class CategoryTree implements OptionSourceInterface
         foreach ($collection as $category) {
             $options[] = [
                 'value' => $category->getId(),
-                'label' => str_repeat('--', $category->getLevel()) . $category->getName(),
+                'label' => str_repeat('--', (int) $category->getLevel()) . $category->getName(),
             ];
         }
         return $options;

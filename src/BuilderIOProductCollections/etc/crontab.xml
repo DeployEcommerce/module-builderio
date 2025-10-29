@@ -8,7 +8,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="builderio">
         <job name="deployecommerce_builderio_clean_webhooks_cronjob"
-             instance="DeployEcommerce\BuilderIO\Cron\CleanWebhooksCronjob" method="execute">
+             instance="DeployEcommerce\BuilderIOProductCollections\Cron\CleanWebhooksCronjob" method="execute">
             <schedule>0 0 * * *</schedule>
         </job>
     </group>

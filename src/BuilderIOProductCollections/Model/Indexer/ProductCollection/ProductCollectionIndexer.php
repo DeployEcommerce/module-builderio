@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Model\Indexer\ProductCollection;
 
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory as ProductCollectionFactory;
+use DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection\CollectionFactory as ProductCollectionFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Indexer\ActionInterface as IndexerActionInterface;
 use Magento\Framework\Mview\ActionInterface as MviewActionInterface;

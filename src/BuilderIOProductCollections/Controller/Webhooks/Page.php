@@ -9,11 +9,11 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Controller\Webhooks;
 
-use DeployEcommerce\BuilderIO\Api\Data\WebhookInterface;
-use DeployEcommerce\BuilderIO\Api\Data\WebhookInterfaceFactory;
-use DeployEcommerce\BuilderIO\Api\WebhookRepositoryInterface;
-use DeployEcommerce\BuilderIO\Model\Queue\Handler\Handler;
-use DeployEcommerce\BuilderIO\System\Config;
+use DeployEcommerce\BuilderIOProductCollections\Api\Data\WebhookInterface;
+use DeployEcommerce\BuilderIOProductCollections\Api\Data\WebhookInterfaceFactory;
+use DeployEcommerce\BuilderIOProductCollections\Api\WebhookRepositoryInterface;
+use DeployEcommerce\BuilderIOProductCollections\Model\Queue\Handler\Handler;
+use DeployEcommerce\BuilderIOProductCollections\System\Config;
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Magento\Framework\App\Action\Context;

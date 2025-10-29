@@ -9,12 +9,12 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Model;
 
-use DeployEcommerce\BuilderIO\Api\Data\ProductCollectionSearchResultsInterface;
-use DeployEcommerce\BuilderIO\Api\Data\ProductCollectionSearchResultsInterfaceFactory;
-use DeployEcommerce\BuilderIO\Api\ProductCollectionInterface;
-use DeployEcommerce\BuilderIO\Api\ProductCollectionRepositoryInterface;
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection as ProductCollectionResourceModel;
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory
+use DeployEcommerce\BuilderIOProductCollections\Api\Data\ProductCollectionSearchResultsInterface;
+use DeployEcommerce\BuilderIOProductCollections\Api\Data\ProductCollectionSearchResultsInterfaceFactory;
+use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionInterface;
+use DeployEcommerce\BuilderIOProductCollections\Api\ProductCollectionRepositoryInterface;
+use DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection as ProductCollectionResourceModel;
+use DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection\CollectionFactory
     as ProductCollectionCollectionFactory;
 use Exception;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection;
 
-use DeployEcommerce\BuilderIO\Model\ProductCollection as Model;
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection as ResourceModel;
+use DeployEcommerce\BuilderIOProductCollections\Model\ProductCollection as Model;
+use DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection as ResourceModel;
 use Magento\Framework\Data\Collection\Db\FetchStrategyInterface as FetchStrategy;
 use Magento\Framework\Data\Collection\EntityFactoryInterface as EntityFactory;
 use Magento\Framework\DataObject;

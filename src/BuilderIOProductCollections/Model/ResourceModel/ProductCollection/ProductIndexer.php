@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection;
 
-use DeployEcommerce\BuilderIO\Model\ProductCollection;
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection as ProductCollectionResource;
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\Collection as ProductCollectionCollection;
-use DeployEcommerce\BuilderIO\Model\ResourceModel\ProductCollection\CollectionFactory
+use DeployEcommerce\BuilderIOProductCollections\Model\ProductCollection;
+use DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection as ProductCollectionResource;
+use DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection\Collection as ProductCollectionCollection;
+use DeployEcommerce\BuilderIOProductCollections\Model\ResourceModel\ProductCollection\CollectionFactory
     as ProductCollectionCollectionFactory;
 use Magento\Framework\App\ResourceConnection;
 
