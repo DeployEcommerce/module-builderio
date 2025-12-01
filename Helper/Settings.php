@@ -34,10 +34,10 @@ class Settings extends AbstractHelper
      * Log an error message.
      *
      * @param string $message
-     * @param $resource
+     * @param mixed $resource
      * @return void
      */
-    public function logError(string $message = "", $resource = null): void
+    public function logError(string $message = "", mixed $resource = null): void
     {
         $this->logger->error(
             self::LOG_PREFIX .

@@ -238,6 +238,7 @@ class Config
     /**
      * Check if the Builder.io integration is enabled.
      *
+     * @param null|int|string $storeId
      * @return bool
      */
     public function isCmsHomepageEnabled($storeId = null)

@@ -99,7 +99,7 @@ class Handler
         $api = PageService::API_HTML_PAGE_ENDPOINT;
 
         // Check if the URL contains a widget if it does use the Qwik API
-        if( str_contains($this->webhook->getWebhookData(), "{{widget") ) {
+        if (str_contains($this->webhook->getWebhookData(), "{{widget")) {
             $api = PageService::API_QWIK_PAGE_ENDPOINT;
         }
 
@@ -138,6 +138,11 @@ class Handler
         }
     }
 
+    /**
+     * Delete the page associated with the webhook.
+     *
+     * @return void
+     */
     private function deletePage()
     {
         try {

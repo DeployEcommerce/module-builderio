@@ -50,11 +50,10 @@ class ContentPageRepository implements ContentPageRepositoryInterface
                 $exception
             );
         } catch (\Throwable $exception) {
-            // todo fix the exception handling
-//            throw new CouldNotSaveException(
-//                __('Could not save the webhook: %1', __('Something went wrong while saving the ContentPage.')),
-//                $exception
-//            );
+            throw new CouldNotSaveException(
+                __('Could not save the content page: %1', $exception->getMessage()),
+                $exception
+            );
         }
 
         return $contentPage;

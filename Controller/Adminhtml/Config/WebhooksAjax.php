@@ -88,7 +88,7 @@ class WebhooksAjax extends Action
         $counter = 0;
         foreach ($data['data']['models'] as $model) {
 
-            if($this->config->getFallbackEditor($store)) {
+            if ($this->config->getFallbackEditor($store)) {
                 $preview_url = self::FALLBACK_EDITOR_URL;
             } else {
                 $preview_url = $this->config->getStoreUrl($store) . 'builderio/preview/page?model=' . $model['name'];
