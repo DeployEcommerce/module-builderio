@@ -23,7 +23,7 @@ class PageUrlRewriteGenerator
     /**
      * Entity type code
      */
-    const ENTITY_TYPE = 'builderio-page';
+    public const ENTITY_TYPE = 'builderio-page';
 
     /**
      * Page model
