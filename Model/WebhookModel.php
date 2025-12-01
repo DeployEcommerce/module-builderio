@@ -61,8 +61,8 @@ class WebhookModel extends AbstractModel implements WebhookInterface, IdentityIn
         Context          $context,
         Registry         $registry,
         private Json     $json,
-        AbstractResource $resource = null,
-        AbstractDb       $resourceCollection = null,
+        ?AbstractResource $resource = null,
+        ?AbstractDb       $resourceCollection = null,
         array            $data = []
     ) {
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
