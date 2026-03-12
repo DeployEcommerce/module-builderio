@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+  ~ @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
+  ~ @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
+  ~ @Package:   DeployEcommerce_BuilderIO
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="DeployEcommerce_BuilderIO::product_collections" sortOrder="10" title="Product Collections"
+             module="DeployEcommerce_BuilderIO" parent="DeployEcommerce_BuilderIO::management"
+            resource="DeployEcommerce_BuilderIO::products" translate="title" action="builderio/products/index"/>
+    </menu>
+</config>

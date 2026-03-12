@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
+    <view id="builderio_collections_product_index" class="DeployEcommerce\BuilderIOProductCollections\Model\Indexer\ProductCollection\ProductCollectionIndexer" group="indexer">
+        <subscriptions>
+            <table name="catalog_rule" entity_column="rule_id" />
+            <table name="builderio_collections" entity_column="id" />
+            <table name="catalog_product_entity" entity_column="entity_id" />
+        </subscriptions>
+    </view>
+</config>

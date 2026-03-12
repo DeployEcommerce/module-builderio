@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+  ~ @Author:    Nathan Chick (nathan.chick@deploy.co.uk)
+  ~ @Copyright: 2024 Deploy Ecommerce (https://www.deploy.co.uk/)
+  ~ @Package:   DeployEcommerce_BuilderIO
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="builderio" frontName="builderio">
+            <module name="DeployEcommerce_BuilderIOProductCollections" before="DeployEcommerce_BuilderIO"/>
+        </route>
+    </router>
+</config>
